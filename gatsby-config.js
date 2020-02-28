@@ -189,5 +189,6 @@ module.exports = {
         extraDirsToCache: ['content/assets/*'],
       },
     },
+    'gatsby-plugin-netlify-cache',
   ],
 };
