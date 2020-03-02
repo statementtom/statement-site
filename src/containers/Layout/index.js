@@ -15,16 +15,6 @@ const Layout = ({ children }) => (
         type="text/javascript"
         src="https://cdns.canddi.com/p/d42f869864fbbba8e2b330f06c011ce0.js"
       />
-      <div style={{ display: 'none' }}>
-        <script type="text/javascript">
-          var google_conversion_id = 863787978; var google_custom_params =
-          window.google_tag_params; var google_remarketing_only = true;
-        </script>
-        <script
-          type="text/javascript"
-          src="https://www.googleadservices.com/pagead/conversion.js"
-        />
-      </div>
     </Helmet>
     <Header />
     <Global

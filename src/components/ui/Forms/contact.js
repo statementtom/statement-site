@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { ColumnGroup } from 'rbx/grid/columns/column-group';
 import { useMedia } from 'react-use';
 import { LongRightArrow } from '../Icons';
-import { initGA, GAEvent } from '../../../util/tracking';
 
 const CustomInput = styled(Input)`
   border-radius: 0;
@@ -154,10 +153,6 @@ export const ContactForm = () => {
   const [budget, setBudget] = useState('');
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    initGA('UA-8512046-1');
-  }, []);
-
   const handleSubmit = e => {
     e.preventDefault();
     fetch('https://r1rvji095i.execute-api.eu-west-1.amazonaws.com/Production', {
@@ -184,7 +179,9 @@ export const ContactForm = () => {
         setService('');
         setBudget('');
         setMessage('');
-        GAEvent('Contact', 'Form Submitted', 'Contact');
+        window.dataLayer.push({
+          event: 'contact-form-submit',
+        });
       })
       .catch(() => setSuccess(false));
   };

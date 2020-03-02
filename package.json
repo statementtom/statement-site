@@ -18,6 +18,7 @@
     "gatsby-plugin-google-analytics": "^2.1.19",
     "gatsby-plugin-google-gtag": "^1.1.14",
     "gatsby-plugin-google-remarketing": "^0.0.1",
+    "gatsby-plugin-google-tagmanager": "^2.1.25",
     "gatsby-plugin-hotjar": "^1.0.1",
     "gatsby-plugin-linkedin-insight": "^1.0.1",
     "gatsby-plugin-manifest": "^2.2.18",
