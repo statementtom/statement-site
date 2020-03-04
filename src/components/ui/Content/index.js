@@ -150,7 +150,7 @@ const Marketing = styled(BulmaContent)`
   }
 `;
 
-const Content = ({ primary, article, event, marketing, blog }) => (
+const Content = ({ primary, article, event, marketing, blog, key }) => (
   <>
     {primary.content.html && (
       <CustomSection size={event ? '' : 'medium'}>
@@ -166,6 +166,7 @@ const Content = ({ primary, article, event, marketing, blog }) => (
                   __html: primary.content.html,
                 }}
               />
+              <p>{key}</p>
               {primary.link_url && primary.link_label && (
                 <CustomLink href={primary.link_url.url} target="_blank">
                   {primary.link_label.text}

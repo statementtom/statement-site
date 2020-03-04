@@ -28,6 +28,7 @@ import TextMaps from '../components/ui/TextMaps';
 import Content from '../components/ui/Content';
 import CaseStudyGrid from '../components/ui/CaseStudyGrid';
 import CaseStudyBanner from '../components/ui/CaseStudyBanner';
+import HtmlBlock from '../components/ui/HtmlBlock';
 
 // Component Level GraphQL Fragments
 import { PageBodyBannerFragment } from '../components/ui/Banner/fragment';
@@ -50,6 +51,7 @@ import { PrismicPageBodyContentFragment } from '../components/ui/Content/fragmen
 import { PrismicPageBodySliderFragment } from '../components/ui/Slider/fragment';
 import { PrismicPageBodyLogoListFragment } from '../components/ui/LogoList/fragment';
 import { PrismicPageBodyCaseStudyBannerFragment } from '../components/ui/CaseStudyBanner/fragment';
+import { PrismicPageBodyHtmlFragment } from '../components/ui/HtmlBlock/fragment';
 
 export const pageQuery = graphql`
   query Page($uid: String) {
@@ -127,6 +129,9 @@ export const pageQuery = graphql`
           }
           ... on PrismicPageBodyCaseStudySlider1 {
             ...PrismicPageBodyCaseStudyBannerFragment
+          }
+          ... on PrismicPageBodyHtml {
+            ...PrismicPageBodyHtmlFragment
           }
           ... on PrismicPageBodyActiveCampaignForm {
             id
@@ -310,6 +315,14 @@ const Page = ({
         if (section.slice_type === 'active_campaign_form') {
           const id = section.primary.form_snippet.split('?id=')[1];
           return <div className={`_form_${id}`} />;
+        }
+        if (section.slice_type === 'html') {
+          return (
+            <HtmlBlock
+              key={`${section.id}-${index}`}
+              primary={section.primary}
+            />
+          );
         }
         return null;
       })}
