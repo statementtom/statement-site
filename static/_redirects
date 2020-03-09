@@ -1,0 +1,6 @@
+# my manually set redirects for testing
+/home              /
+/blog/my-post.php  /blog/my-post
+
+# my manually set redirects
+/legal-stuff       /cookies
