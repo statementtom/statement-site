@@ -16,8 +16,8 @@ export const PrismicPageBodyTextWithImageAlternateFragment = graphql`
       image {
         localFile {
           childImageSharp {
-            fluid(maxWidth: 500, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fluid(quality: 100, maxWidth: 800) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
