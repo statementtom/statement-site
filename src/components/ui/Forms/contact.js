@@ -141,6 +141,12 @@ const FormHelper = styled.p`
   color: #000 !important;
 `;
 
+const encode = (data) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
 export const ContactForm = () => {
   const mobile = useMedia('(max-width: 768px)');
   const [success, setSuccess] = useState(false);
@@ -152,21 +158,25 @@ export const ContactForm = () => {
   const [service, setService] = useState('');
   const [budget, setBudget] = useState('');
   const [message, setMessage] = useState('');
+  const [honeyPot, setHoneyPot] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch('https://r1rvji095i.execute-api.eu-west-1.amazonaws.com/Production', {
+    const form = e.target;
+
+    fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: JSON.stringify({
-        name,
-        company,
-        email,
-        telephone,
-        project,
-        service,
-        budget,
-        message,
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        'name': name,
+        'company': company,
+        'email': email,
+        'telephone': telephone,
+        'project': project,
+        'service': service,
+        'budget': budget,
+        'message': message
       }),
     })
       .then(() => {
@@ -193,8 +203,21 @@ export const ContactForm = () => {
           Thank you for getting in touch, we will get back to you soon!
         </Notification>
       )}
-      <Form name="contact" method="post" onSubmit={handleSubmit}>
+      <Form
+        name="contact"
+        method="post"
+        onSubmit={handleSubmit}
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
         <input type="hidden" name="form-name" value="contact" />
+        <p hidden>
+          <input
+            name="bot-field"
+            value={honeyPot}
+            onChange={e => setHoneyPot(e.target.value)}
+          />
+        </p>
         <ColumnGroup className="is-mobile is-multiline" paddingless marginless>
           <Column
             mobile={{ size: 12 }}
