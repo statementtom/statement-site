@@ -54,13 +54,12 @@ const CustomSection = styled(Section)`
   @media screen and (max-width: 768px) {
     padding-bottom: 3rem;
   }
-  padding-top: 0;
 `;
 
 const HtmlBlock = ({ primary }) => (
   <>
     {primary.html && (
-      <CustomSection>
+      <CustomSection size="medium">
         <Container>
           <ColumnGroup className="is-mobile is-multiline is-centered">
             <Column
