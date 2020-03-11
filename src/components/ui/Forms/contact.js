@@ -164,36 +164,48 @@ export const ContactForm = () => {
     e.preventDefault();
     const form = e.target;
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': form.getAttribute('name'),
-        'name': name,
-        'company': company,
-        'email': email,
-        'telephone': telephone,
-        'project': project,
-        'service': service,
-        'budget': budget,
-        'message': message
-      }),
-    })
-      .then(() => {
-        setSuccess(true);
-        setName('');
-        setEmail('');
-        setCompany('');
-        setTelephone('');
-        setProject('');
-        setService('');
-        setBudget('');
-        setMessage('');
-        window.dataLayer.push({
-          event: 'contact-form-submit',
-        });
-      })
-      .catch(() => setSuccess(false));
+    console.log(encode({
+      'form-name': form.getAttribute('name'),
+      'name': name,
+      'company': company,
+      'email': email,
+      'telephone': telephone,
+      'project': project,
+      'service': service,
+      'budget': budget,
+      'message': message
+    }));
+
+    // fetch('/', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //   body: encode({
+    //     'form-name': form.getAttribute('name'),
+    //     'name': name,
+    //     'company': company,
+    //     'email': email,
+    //     'telephone': telephone,
+    //     'project': project,
+    //     'service': service,
+    //     'budget': budget,
+    //     'message': message
+    //   }),
+    // })
+    //   .then(() => {
+    //     setSuccess(true);
+    //     setName('');
+    //     setEmail('');
+    //     setCompany('');
+    //     setTelephone('');
+    //     setProject('');
+    //     setService('');
+    //     setBudget('');
+    //     setMessage('');
+    //     window.dataLayer.push({
+    //       event: 'contact-form-submit',
+    //     });
+    //   })
+    //   .catch(() => setSuccess(false));
   };
 
   return (
@@ -344,7 +356,7 @@ export const ContactForm = () => {
           >
             <CustomTextarea
               placeholder="Message *"
-              name="Message"
+              name="message"
               required
               value={message}
               onChange={e => setMessage(e.target.value)}
