@@ -54,6 +54,7 @@ const CustomNavbar = styled(Navbar)`
   > .columns {
     min-height: inherit;
   }
+  top: ${props => (props.hasAnnouncement && !props.scrolling ? '50px' : '0')} !important;
 `;
 
 const LogoWrapper = styled.div`
@@ -223,6 +224,33 @@ const Nav = styled.nav`
   }
 `;
 
+const AnnouncementWrapper = styled(Content)`
+  background: #ce0527;
+  color: #fff;
+  margin-bottom: 0px!important;
+  padding: 10px;
+  p,
+  a {
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 0 !important;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  strong {
+    color: #fff;
+  }
+  a {
+    text-decoration: underline;
+    &:hover {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+`;
+
 const PosedMainMenu = posed(MainMenu)({
   enter: {
     opacity: 1,
@@ -292,6 +320,10 @@ export default () => {
     query Header {
       prismicNavigation {
         data {
+          announcement_banner {
+            html
+            text
+          }
           body {
             ... on PrismicNavigationBodySocialLink {
               items {
@@ -355,7 +387,7 @@ export default () => {
 
   useEffect(() => {
     const html = document.querySelector('html');
-    if (scrollY >= 100) {
+    if (scrollY > 0) {
       toggleScrolling(true);
     } else {
       toggleScrolling(false);
@@ -370,10 +402,19 @@ export default () => {
 
   return (
     <>
+      {data.announcement_banner.text && (
+        <AnnouncementWrapper
+          dangerouslySetInnerHTML={{
+            __html: data.announcement_banner.html,
+          }}
+        />
+      )}
       <header>
         <CustomNavbar
+          hasAnnouncement={data.announcement_banner.text}
           scrolling={scrolling ? scrolling.toString() : undefined}
           fixed="top"
+          s='1'
         >
           <ColumnGroup className="is-mobile is-multiline">
             <NavColumn
