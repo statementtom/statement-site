@@ -229,18 +229,24 @@ const AnnouncementWrapper = styled(Content)`
   color: #fff;
   margin-bottom: 0px!important;
   padding: 10px;
-  p,
-  a {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  p {
     font-size: 14px;
-    color: #ffffff;
+    flex: 1 0 auto;
     text-align: center;
     margin-bottom: 0 !important;
-    &:hover {
-      color: #ffffff;
-    }
+    color: #ffffff;
   }
+  a,
   strong {
-    color: #fff;
+    font-size: 14px;
+    color: #ffffff;
   }
   a {
     text-decoration: underline;
