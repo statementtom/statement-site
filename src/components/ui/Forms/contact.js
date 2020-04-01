@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Field, Control, Input, Textarea, Select, Column } from 'rbx';
 import styled from '@emotion/styled';
 import { ColumnGroup } from 'rbx/grid/columns/column-group';
 import { useMedia } from 'react-use';
 import { LongRightArrow } from '../Icons';
+import Recaptcha from "react-google-recaptcha";
+
+const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY;
 
 const CustomInput = styled(Input)`
   border-radius: 0;
@@ -136,9 +139,24 @@ const Notification = styled.div`
   margin-bottom: 30px;
 `;
 
+const InlineNotification = styled.div`
+  color: #ce0527;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
 const FormHelper = styled.p`
   font-size: 14px;
   color: #000 !important;
+`;
+
+const CustomRecaptcha = styled(Recaptcha)`
+  display: flex;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const encode = (data) => {
@@ -159,10 +177,19 @@ export const ContactForm = () => {
   const [budget, setBudget] = useState('');
   const [message, setMessage] = useState('');
   const [honeyPot, setHoneyPot] = useState('');
+  const [recaptcha, setRecaptcha] = useState('');
+  const [recaptchaMessage, setRecaptchaMessage] = useState('');
+
+  const recaptchaRef = useRef(null);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
+
+    if (recaptcha === '') {
+      setRecaptchaMessage("Please confirm you're not a robot.");
+      return;
+    }
 
     fetch('/', {
       method: 'POST',
@@ -176,7 +203,8 @@ export const ContactForm = () => {
         'project': project,
         'service': service,
         'budget': budget,
-        'message': message
+        'message': message,
+        'g-recaptcha-response': recaptcha
       }),
     })
       .then(() => {
@@ -189,6 +217,7 @@ export const ContactForm = () => {
         setService('');
         setBudget('');
         setMessage('');
+        setRecaptchaMessage('');
         window.dataLayer.push({
           event: 'contact-form-submit',
         });
@@ -209,6 +238,7 @@ export const ContactForm = () => {
         onSubmit={handleSubmit}
         data-netlify="true"
         data-netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
       >
         <input type="hidden" name="form-name" value="contact" />
         <p hidden>
@@ -359,7 +389,19 @@ export const ContactForm = () => {
           </Column>
         </ColumnGroup>
         <Field>
+          <Control>
+            <CustomRecaptcha
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_KEY}
+              onChange={value => setRecaptcha(value)}
+            />
+          </Control>
+        </Field>
+        <Field>
           <Control style={{ textAlign: 'right' }}>
+            {recaptchaMessage !== '' && (
+              <InlineNotification>{recaptchaMessage}</InlineNotification>
+            )}
             <CustomButton type="submit">
               Submit <LongRightArrow size="20" fill="#fff" />
             </CustomButton>
