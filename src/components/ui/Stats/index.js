@@ -78,7 +78,7 @@ const Stats = ({ items, size, background }) => {
   const mobile = useMedia('(max-width: 768px)');
   return (
     <>
-      {items.length > 0 && (
+      {items.length > 0 && items[0].figure.html != '<h1> </h1>' && items[0].figure.html != '<p> </p>' && (
         <CustomSection size={size} background={background}>
           <Container>
             {!mobile && (
