@@ -191,5 +191,11 @@ module.exports = {
         cachePublic: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ['SITE_RECAPTCHA_KEY'],
+      },
+    }
   ],
 };
