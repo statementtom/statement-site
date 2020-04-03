@@ -8,8 +8,8 @@ export const PrismicPageBodyResourceListFragment = graphql`
       image {
         localFile {
           childImageSharp {
-            fluid(maxWidth: 1500, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fluid(maxWidth: 600, quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
@@ -35,7 +35,7 @@ export const PrismicPageBodyResourceListFragment = graphql`
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 600, maxHeight: 350, quality: 100) {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_withWebp
                   }
                 }
               }
