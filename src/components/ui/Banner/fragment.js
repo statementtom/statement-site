@@ -79,6 +79,7 @@ export const PrismicCareerBodyBannerFragment = graphql`
             }
           }
         }
+        url
         alt
       }
     }
