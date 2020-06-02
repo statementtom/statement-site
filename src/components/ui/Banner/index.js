@@ -9,7 +9,7 @@ import { LongRightArrow } from '../Icons';
 
 const BannerItem = styled.div`
   position: relative;
-  height: 90vh;
+  height: 80vh;
   .gatsby-image-wrapper {
     height: 100%;
   }

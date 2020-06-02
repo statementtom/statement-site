@@ -1,184 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Field, Control, Input, Textarea, Select, Column } from 'rbx';
-import styled from '@emotion/styled';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import { useMedia } from 'react-use';
-import { LongRightArrow } from '../Icons';
-import Recaptcha from "react-google-recaptcha";
+import React, { useState, useEffect, useRef } from "react";
+import { Field, Control, Select, Column } from "rbx";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import { useMedia } from "react-use";
 
-const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY;
+import { LongRightArrow } from "../Icons";
+import encode from "../../../util/encode";
 
-const CustomInput = styled(Input)`
-  border-radius: 0;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  box-shadow: none;
-  border-color: #ebebeb;
-  color: #000;
-  transition: all 0.3s ease;
+import { RECAPTCHA_KEY } from "./constants";
 
-  @media screen and (max-width: 768px) {
-    margin: 15px 0;
-  }
-
-  &::placeholder {
-    transition: all 0.3s ease;
-    color: #959595;
-  }
-  &:hover {
-    border-color: #000;
-    &::placeholder {
-      color: #000;
-    }
-  }
-`;
-
-const CustomTextarea = styled(Textarea)`
-  border-radius: 0;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  box-shadow: none;
-  border-color: #ebebeb;
-  color: #000;
-  transition: all 0.3s ease;
-
-  @media screen and (max-width: 768px) {
-    margin: 15px 0;
-  }
-
-  &::placeholder {
-    transition: all 0.3s ease;
-    color: #959595;
-  }
-  &:hover {
-    border-color: #000;
-    &::placeholder {
-      color: #000;
-    }
-  }
-`;
-
-const Form = styled.form`
-  margin-top: 60px;
-  @media screen and (max-width: 768px) {
-    margin-top: 0;
-  }
-  .field {
-    margin-bottom: 1rem;
-  }
-`;
-
-const CustomButton = styled.button`
-  text-align: center;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 30px;
-  background-color: #ce0527;
-  transition: all 0.3s ease;
-  min-width: 300px;
-  border: 0;
-  cursor: pointer;
-  text-transform: lowercase;
-  @media screen and (max-width: 768px) {
-    min-width: 100%;
-  }
-  svg {
-    display: block;
-    margin-left: 10px;
-    margin-top: 2px;
-    transition: all 0.3s ease;
-    path {
-      transition: all 0.3s ease;
-    }
-  }
-  &:hover {
-    color: #000;
-    background-color: #fff;
-    svg,
-    svg path {
-      fill: #ce0527;
-    }
-  }
-`;
-
-const CustomSelect = styled(Select.Container)`
-  @media screen and (max-width: 768px) {
-    margin: 15px 0;
-  }
-
-  select {
-    border-radius: 0;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    box-shadow: none;
-    border-color: #ebebeb;
-  }
-`;
-
-const Notification = styled.div`
-  padding: 30px;
-  background-color: #ce0527;
-  color: #fff;
-  border: 0;
-  text-align: center;
-  color: #fff;
-  line-height: 28px;
-  font-size: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 30px;
-  background-color: #ce0527;
-  transition: all 0.3s ease;
-  width: 100%;
-  margin-bottom: 30px;
-`;
-
-const InlineNotification = styled.div`
-  color: #ce0527;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-const FormHelper = styled.p`
-  font-size: 14px;
-  color: #000 !important;
-`;
-
-const CustomRecaptcha = styled(Recaptcha)`
-  display: flex;
-  justify-content: flex-end;
-
-  @media screen and (max-width: 768px) {
-    justify-content: center;
-  }
-`;
-
-const encode = (data) => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-}
+import * as S from "./styles";
 
 export const ContactForm = () => {
-  const mobile = useMedia('(max-width: 768px)');
+  const mobile = useMedia("(max-width: 768px)");
   const [success, setSuccess] = useState(false);
-  const [name, setName] = useState('');
-  const [company, setCompany] = useState('');
-  const [email, setEmail] = useState('');
-  const [telephone, setTelephone] = useState('');
-  const [project, setProject] = useState('');
-  const [service, setService] = useState('');
-  const [budget, setBudget] = useState('');
-  const [message, setMessage] = useState('');
-  const [honeyPot, setHoneyPot] = useState('');
-  const [recaptcha, setRecaptcha] = useState('');
-  const [recaptchaMessage, setRecaptchaMessage] = useState('');
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [project, setProject] = useState("");
+  const [service, setService] = useState("");
+  const [budget, setBudget] = useState("");
+  const [message, setMessage] = useState("");
+  const [honeyPot, setHoneyPot] = useState("");
+  const [recaptcha, setRecaptcha] = useState("");
+  const [recaptchaMessage, setRecaptchaMessage] = useState("");
 
   const recaptchaRef = useRef(null);
 
@@ -186,40 +31,40 @@ export const ContactForm = () => {
     e.preventDefault();
     const form = e.target;
 
-    if (recaptcha === '') {
+    if (recaptcha === "") {
       setRecaptchaMessage("Please confirm you're not a robot.");
       return;
     }
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        'form-name': form.getAttribute('name'),
-        'name': name,
-        'company': company,
-        'email': email,
-        'telephone': telephone,
-        'project': project,
-        'service': service,
-        'budget': budget,
-        'message': message,
-        'g-recaptcha-response': recaptcha
-      }),
+        "form-name": form.getAttribute("name"),
+        name,
+        company,
+        email,
+        telephone,
+        project,
+        service,
+        budget,
+        message,
+        "g-recaptcha-response": recaptcha
+      })
     })
       .then(() => {
         setSuccess(true);
-        setName('');
-        setEmail('');
-        setCompany('');
-        setTelephone('');
-        setProject('');
-        setService('');
-        setBudget('');
-        setMessage('');
-        setRecaptchaMessage('');
+        setName("");
+        setEmail("");
+        setCompany("");
+        setTelephone("");
+        setProject("");
+        setService("");
+        setBudget("");
+        setMessage("");
+        setRecaptchaMessage("");
         window.dataLayer.push({
-          event: 'contact-form-submit',
+          event: "contact-form-submit"
         });
       })
       .catch(() => setSuccess(false));
@@ -228,11 +73,11 @@ export const ContactForm = () => {
   return (
     <>
       {!mobile && success && (
-        <Notification>
+        <S.Notification>
           Thank you for getting in touch, we will get back to you soon!
-        </Notification>
+        </S.Notification>
       )}
-      <Form
+      <S.Form
         name="contact"
         method="post"
         onSubmit={handleSubmit}
@@ -254,7 +99,7 @@ export const ContactForm = () => {
             tablet={{ size: 6 }}
             desktop={{ size: 16 }}
           >
-            <CustomInput
+            <S.Input
               type="text"
               placeholder="Name *"
               name="name"
@@ -268,7 +113,7 @@ export const ContactForm = () => {
             tablet={{ size: 6 }}
             desktop={{ size: 6 }}
           >
-            <CustomInput
+            <S.Input
               type="email"
               placeholder="Email *"
               name="email"
@@ -282,7 +127,7 @@ export const ContactForm = () => {
             tablet={{ size: 6 }}
             desktop={{ size: 6 }}
           >
-            <CustomInput
+            <S.Input
               type="text"
               placeholder="Company *"
               name="company"
@@ -296,7 +141,7 @@ export const ContactForm = () => {
             tablet={{ size: 6 }}
             desktop={{ size: 6 }}
           >
-            <CustomInput
+            <S.Input
               type="text"
               placeholder="Telephone *"
               name="telephone"
@@ -310,7 +155,7 @@ export const ContactForm = () => {
             tablet={{ size: 6 }}
             desktop={{ size: 6 }}
           >
-            <CustomSelect fullwidth>
+            <S.Select fullwidth>
               <Select
                 name="project"
                 value={project}
@@ -325,14 +170,14 @@ export const ContactForm = () => {
                 <Select.Option value="Q3">Q3</Select.Option>
                 <Select.Option value="Q4">Q4</Select.Option>
               </Select>
-            </CustomSelect>
+            </S.Select>
           </Column>
           <Column
             mobile={{ size: 12 }}
             tablet={{ size: 6 }}
             desktop={{ size: 6 }}
           >
-            <CustomSelect fullwidth>
+            <S.Select fullwidth>
               <Select
                 required
                 name="service"
@@ -352,14 +197,14 @@ export const ContactForm = () => {
                 </Select.Option>
                 <Select.Option value="Other">Other</Select.Option>
               </Select>
-            </CustomSelect>
+            </S.Select>
           </Column>
           <Column
             mobile={{ size: 12 }}
             tablet={{ size: 12 }}
             desktop={{ size: 12 }}
           >
-            <CustomInput
+            <S.Input
               type="text"
               name="budget"
               placeholder="Budget Range"
@@ -372,7 +217,7 @@ export const ContactForm = () => {
             tablet={{ size: 12 }}
             desktop={{ size: 12 }}
           >
-            <CustomTextarea
+            <S.Textarea
               placeholder="Message *"
               name="message"
               required
@@ -385,12 +230,12 @@ export const ContactForm = () => {
             tablet={{ size: 12 }}
             desktop={{ size: 12 }}
           >
-            <FormHelper>* Required fields</FormHelper>
+            <S.FormHelper>* Required fields</S.FormHelper>
           </Column>
         </ColumnGroup>
         <Field>
           <Control>
-            <CustomRecaptcha
+            <S.Recaptcha
               ref={recaptchaRef}
               sitekey={RECAPTCHA_KEY}
               onChange={value => setRecaptcha(value)}
@@ -398,20 +243,20 @@ export const ContactForm = () => {
           </Control>
         </Field>
         <Field>
-          <Control style={{ textAlign: 'right' }}>
-            {recaptchaMessage !== '' && (
-              <InlineNotification>{recaptchaMessage}</InlineNotification>
+          <Control style={{ textAlign: "right" }}>
+            {recaptchaMessage !== "" && (
+              <S.InlineNotification>{recaptchaMessage}</S.InlineNotification>
             )}
-            <CustomButton type="submit">
+            <S.Button type="submit">
               Submit <LongRightArrow size="20" fill="#fff" />
-            </CustomButton>
+            </S.Button>
           </Control>
         </Field>
-      </Form>
+      </S.Form>
       {mobile && success && (
-        <Notification>
+        <S.Notification>
           Thank you for getting in touch, we will get back to you soon!
-        </Notification>
+        </S.Notification>
       )}
     </>
   );
