@@ -3,5 +3,9 @@ node_modules/
 public/
 .env
 .env.development
+
+# Misc
+.idea/
+
 # Local Netlify folder
 .netlify
