@@ -1,12 +1,12 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import PropTypes from 'prop-types';
-import { Global, css } from '@emotion/core';
-import CookieConsent from 'react-cookie-consent';
-import Footer from '../../components/ui/Footer';
+import React from "react";
+import Helmet from "react-helmet";
+import PropTypes from "prop-types";
+import { Global, css } from "@emotion/core";
+import CookieConsent from "react-cookie-consent";
+import Footer from "../../components/ui/Footer";
 
-import 'rbx/index.css';
-import Header from '../../components/ui/Header';
+import "rbx/index.css";
+import Header from "../../components/ui/Header";
 
 const Layout = ({ children }) => (
   <>
@@ -78,17 +78,17 @@ const Layout = ({ children }) => (
       location="bottom"
       buttonText="Got it"
       cookieName="cookie-consent"
-      style={{ background: '#000', fontFamily: 'europa, sans-serif' }}
+      style={{ background: "#000", fontFamily: "europa, sans-serif" }}
       buttonStyle={{
-        color: '#fff',
-        fontSize: '16px',
-        backgroundColor: '#ce0527',
-        textAlign: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '10px 30px',
-        textTransform: 'lowercase',
+        color: "#fff",
+        fontSize: "16px",
+        backgroundColor: "#ce0527",
+        textAlign: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "10px 30px",
+        textTransform: "lowercase"
       }}
       expires={150}
     >
@@ -99,7 +99,7 @@ const Layout = ({ children }) => (
 );
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Layout;
