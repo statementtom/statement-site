@@ -56,6 +56,7 @@ import TextImageSimple from "../components/ui/TextImageSimple";
 import Quote from "../components/ui/Quote";
 import { Section } from "rbx";
 import PPCForm from "../components/ui/Forms/ppc";
+import Accordion from "../components/ui/Accordion";
 
 export const pageQuery = graphql`
   query Page($uid: String) {
@@ -202,6 +203,26 @@ export const pageQuery = graphql`
               content_link {
                 link_type
                 url
+              }
+            }
+          }
+          ... on PrismicPageBodyAccordion {
+            id
+            slice_type
+            primary {
+              content_title {
+                html
+              }
+            }
+            items {
+              accordion_title {
+                html
+              }
+              accordion_content {
+                html
+              }
+              accordion_points {
+                html
               }
             }
           }
@@ -405,6 +426,15 @@ const Page = ({
         if (section.slice_type === "form") {
           return (
             <PPCForm
+              key={`${section.id}-${index}`}
+              primary={section.primary}
+              items={section.items}
+            />
+          );
+        }
+        if (section.slice_type === "accordion") {
+          return (
+            <Accordion
               key={`${section.id}-${index}`}
               primary={section.primary}
               items={section.items}
