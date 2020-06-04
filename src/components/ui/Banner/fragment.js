@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql } from "gatsby";
 
 export const PageBodyBannerFragment = graphql`
   fragment PageBodyBannerFragment on PrismicPageBodyBanner {
@@ -79,6 +79,7 @@ export const PrismicCareerBodyBannerFragment = graphql`
             }
           }
         }
+        url
         alt
       }
     }
