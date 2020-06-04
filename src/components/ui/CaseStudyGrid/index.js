@@ -1,117 +1,45 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import { Content, Column } from 'rbx';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import Img from 'gatsby-image';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import { linkResolver } from '../../../util/links';
+import React from "react";
+import { Column } from "rbx";
+import PropTypes from "prop-types";
+import Img from "gatsby-image";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import { linkResolver } from "../../../util/links";
 
-const CaseStudyItem = styled(Link)`
-  display: block;
-  height: 70vh;
-  position: relative;
-  z-index: 3;
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 50%;
-    z-index: 2;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 100%
-    );
-  }
-  .gatsby-image-wrapper {
-    height: 70vh;
-  }
-  @media screen and (max-width: 768px) {
-    height: 650px;
-    .gatsby-image-wrapper {
-      height: 650px;
-    }
-  }
-  @media screen and (max-width: 480px) {
-    height: 500px;
-    .gatsby-image-wrapper {
-      height: 500px;
-    }
-  }
-`;
+import * as S from "./styles";
 
-const CustomContent = styled(Content)`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 30px;
-  height: 100%;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  width: 100%;
-  *,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: #fff;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 500;
-    font-size: 30px;
-    letter-spacing: -0.32px;
-    line-height: 60px;
-    margin-bottom: 0;
-  }
-  p {
-    font-weight: 300;
-  }
-`;
-
-const CaseStudyGrid = ({ items }) => (
-  <div style={{ position: 'relative' }}>
-    <ColumnGroup className="is-mobile is-multiline">
-      {items.map((item, index) => (
-        <Column
-          paddingless
-          mobile={{ size: 12 }}
-          tablet={{ size: 12 }}
-          desktop={{ size: 4 }}
-          key={index}
-        >
-          <CaseStudyItem to={linkResolver(item.link.type, item.link.uid)}>
-            <Img
-              fluid={item.image.localFile.childImageSharp.fluid}
-              alt={item.image.alt}
-            />
-            <CustomContent
-              dangerouslySetInnerHTML={{
-                __html: item.content.html,
-              }}
-            />
-          </CaseStudyItem>
-        </Column>
-      ))}
-    </ColumnGroup>
-  </div>
-);
+const CaseStudyGrid = ({ items }) => {
+  if (!items || items.length === 0) return null;
+  return (
+    <S.Container>
+      <ColumnGroup className="is-mobile is-multiline">
+        {items.map((item, index) => (
+          <Column
+            paddingless
+            mobile={{ size: 12 }}
+            tablet={{ size: 12 }}
+            desktop={{ size: 4 }}
+            key={index}
+          >
+            <S.Item to={linkResolver(item.link.type, item.link.uid)}>
+              <Img
+                fluid={item.image.localFile.childImageSharp.fluid}
+                alt={item.image.alt}
+              />
+              <S.Content
+                dangerouslySetInnerHTML={{
+                  __html: item.content.html
+                }}
+              />
+            </S.Item>
+          </Column>
+        ))}
+      </ColumnGroup>
+    </S.Container>
+  );
+};
 
 CaseStudyGrid.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired
 };
 
 export default CaseStudyGrid;
