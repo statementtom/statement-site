@@ -47,7 +47,7 @@ const SliderContent = styled(Content)`
 const Slide = styled.div`
   position: relative;
   z-index: 3;
-  height: 90vh;
+  height: 80vh;
   .gatsby-image-wrapper {
     height: 100%;
     position: relative;
