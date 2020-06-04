@@ -90,7 +90,7 @@ module.exports = {
           if (doc.type === "page") {
             return `/${doc.uid}/`;
           }
-          if (doc.type === "case-study") {
+          if (doc.type === "case") {
             return `/results/${doc.uid}/`;
           }
           if (doc.type === "event") {
