@@ -1,21 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import styled from '@emotion/styled';
-import Img from 'gatsby-image';
+import styled from "@emotion/styled";
+import Img from "gatsby-image";
 
-import { Container, Column, Content } from 'rbx';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import { LongRightArrow } from '../Icons';
+import { Container, Column, Content } from "rbx";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import { LongRightArrow } from "../Icons";
+
+import * as S from "./styles";
+import generateScrollTo from "../../../util/generateScrollTo";
 
 const BannerItem = styled.div`
   position: relative;
-  height: 80vh;
+  height: ${props => (props.hasCTA ? "80vh" : "65vh")};
   .gatsby-image-wrapper {
     height: 100%;
   }
   @media screen and (max-width: 768px) {
     height: auto;
-    margin-top: ${props => (props.large ? '0px' : '90px')};
+    margin-top: ${props => (props.large ? "0px" : "90px")};
     > .gatsby-image-wrapper {
       height: auto;
       min-height: inherit;
@@ -25,10 +28,10 @@ const BannerItem = styled.div`
     }
     ${props =>
       props.article
-        ? 'min-height: 350px'
+        ? "min-height: 350px"
         : props.large
-        ? 'min-height: calc(100vh + 120px)'
-        : 'min-height: 650px'};
+        ? "min-height: calc(100vh + 120px)"
+        : "min-height: 650px"};
   }
 `;
 
@@ -48,8 +51,8 @@ const BannerContent = styled(Content)`
   h5,
   h6 {
     color: #fff;
-    font-size: 60px;
-    line-height: 72px;
+    font-size: 50px;
+    line-height: 62px;
     letter-spacing: -0.43px;
     margin-bottom: 0;
     font-weight: 500;
@@ -86,7 +89,7 @@ const BannerContentWrapper = styled.div`
     z-index: 3;
   }
   &:after {
-    content: '';
+    content: "";
     background-color: #000;
     height: 100%;
     width: 100%;
@@ -94,43 +97,7 @@ const BannerContentWrapper = styled.div`
     top: 0;
     left: 0;
     opacity: 0.5;
-    display: ${props => (props.content ? 'block' : 'none')};
-  }
-`;
-
-const ScrollCTA = styled.div`
-  cursor: pointer;
-  z-index: 3;
-  position: absolute;
-  bottom: 0%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  p {
-    color: #ffffff;
-    font-size: 11px;
-    letter-spacing: 3px;
-    line-height: 17px;
-    text-align: center;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    @media screen and (max-width: 768px) {
-      margin-bottom: 15px;
-    }
-  }
-  div {
-    height: 100px;
-    border-left: 1px solid;
-    border-image: linear-gradient(180deg, #fff 0, #fff 50%, #d0d0d0 0, #d0d0d0)
-      1 100%;
-    margin-bottom: -50px;
-    background-color: #fff;
-    @media screen and (max-width: 768px) {
-      height: 80px;
-      margin-bottom: -40px;
-    }
+    display: ${props => (props.content ? "block" : "none")};
   }
 `;
 
@@ -177,20 +144,11 @@ const Banner = ({
   siteLink,
   article,
   category,
-  featuredLogos,
+  featuredLogos
 }) => {
-  const handleClick = e => {
-    const { bottom } = e.target.getBoundingClientRect();
-    if (typeof window !== 'undefined') {
-      window.scroll({
-        top: bottom,
-        left: 0,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const enableScrollTo = primary.enable_scroll_to;
   return (
-    <BannerItem large={!!large} article={article}>
+    <BannerItem large={!!large} article={article} hasCTA={enableScrollTo}>
       {imageOverride ? (
         <Img fluid={imageOverride.childImageSharp.fluid} />
       ) : (
@@ -201,23 +159,31 @@ const Banner = ({
       )}
       {primary.content && (
         <BannerContentWrapper content={!!primary.content}>
-          <Container style={{ height: '100%' }}>
+          <Container style={{ height: "100%" }}>
             <ColumnGroup
               className="is-mobile is-multiline"
-              style={{ height: '100%' }}
+              style={{ height: "100%" }}
             >
               <Column
                 mobile={{ size: 12 }}
-                tablet={{ size: 8 }}
+                tablet={{ size: 10 }}
                 desktop={{ size: 8 }}
-                style={{ height: '100%' }}
+                style={{ height: "100%" }}
               >
                 <BannerContent>
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: primary.content.html,
+                      __html: primary.content.html
                     }}
                   />
+                  {enableScrollTo && (
+                    <S.CTAButton
+                      to={generateScrollTo(primary.scroll_to_element_id)}
+                    >
+                      {primary.call_to_action_text.text}
+                    </S.CTAButton>
+                  )}
+
                   <FlexWrapper>
                     {category && (
                       <FlexItem>
@@ -248,7 +214,7 @@ const Banner = ({
                             <p style={{ margin: 0, fontSize: 20 }}>
                               <strong>
                                 Featured in
-                                <span style={{ color: '#CE0527' }}>.</span>
+                                <span style={{ color: "#CE0527" }}>.</span>
                               </strong>
                             </p>
                           </Content>
@@ -257,12 +223,12 @@ const Banner = ({
                           <Column
                             className="is-6-mobile is-narrow-tablet is-narrow-desktop"
                             key={index}
-                            style={{ paddingLeft: index === 0 ? 0 : 'auto' }}
+                            style={{ paddingLeft: index === 0 ? 0 : "auto" }}
                           >
                             <img
                               src={logo.featured_image.url}
                               alt={logo.featured_image.alt}
-                              style={{ maxWidth: 150, width: '100%' }}
+                              style={{ maxWidth: 150, width: "100%" }}
                             />
                           </Column>
                         ))}
@@ -273,12 +239,6 @@ const Banner = ({
               </Column>
             </ColumnGroup>
           </Container>
-          {primary.hide_scroll === 'No' && (
-            <ScrollCTA onClick={handleClick}>
-              <p>Take a scroll</p>
-              <div />
-            </ScrollCTA>
-          )}
         </BannerContentWrapper>
       )}
     </BannerItem>

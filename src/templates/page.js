@@ -145,29 +145,6 @@ export const pageQuery = graphql`
               form_snippet
             }
           }
-          ... on PrismicPageBodyTextWithImage1 {
-            id
-            slice_type
-            primary {
-              content_title {
-                html
-              }
-              content_padding_bottom
-              content_image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 500, maxHeight: 500, quality: 100) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-                alt
-              }
-              content_body {
-                html
-              }
-            }
-          }
           ... on PrismicPageBodyQuote {
             id
             slice_type
@@ -175,6 +152,11 @@ export const pageQuery = graphql`
               content_body {
                 html
               }
+              content_image {
+                url
+                alt
+              }
+              content_company
               content_user
             }
           }
@@ -182,11 +164,15 @@ export const pageQuery = graphql`
             id
             slice_type
             primary {
+              content_top_padding
               content_title {
                 html
               }
             }
             items {
+              content_preheading {
+                html
+              }
               content_title {
                 html
               }

@@ -8,6 +8,11 @@ export const PageBodyBannerFragment = graphql`
       content {
         html
       }
+      call_to_action_text {
+        text
+      }
+      enable_scroll_to
+      scroll_to_element_id
       hide_scroll
       image {
         localFile {

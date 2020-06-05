@@ -88,7 +88,7 @@ const PPCForm = ({ primary, items }) => {
   };
 
   return (
-    <div id="ppc-form">
+    <S.Container id="ppc-form" removeTopPadding={primary.content_top_padding}>
       <ColumnGroup className="is-mobile is-multiline">
         <Column
           paddingless
@@ -96,10 +96,11 @@ const PPCForm = ({ primary, items }) => {
             size: 12
           }}
           tablet={{
-            size: 6
+            size: 6,
           }}
           desktop={{
-            size: 6
+            size: 5,
+            offset: 1
           }}
         >
           <Section size="small">
@@ -111,20 +112,7 @@ const PPCForm = ({ primary, items }) => {
               data-netlify-honeypot="bot-field"
               data-netlify-recaptcha="true"
             >
-              <input type="hidden" name="form-name" value="ppc_landing" />
-              <p hidden>
-                <input
-                  name="bot-field"
-                  value={honeyPot}
-                  onChange={e => setHoneyPot(e.target.value)}
-                />
-              </p>
-              <S.Title
-                dangerouslySetInnerHTML={{
-                  __html: content
-                }}
-              />
-              <ColumnGroup className="is-mobile is-multiline">
+              <ColumnGroup className="is-mobile is-multiline is-centered">
                 <Column
                   paddingless
                   marginless
@@ -135,9 +123,22 @@ const PPCForm = ({ primary, items }) => {
                     size: 12
                   }}
                   desktop={{
-                    size: 12
+                    size: 10
                   }}
                 >
+                  <input type="hidden" name="form-name" value="ppc_landing" />
+                  <p hidden>
+                    <input
+                      name="bot-field"
+                      value={honeyPot}
+                      onChange={e => setHoneyPot(e.target.value)}
+                    />
+                  </p>
+                  <S.Title
+                    dangerouslySetInnerHTML={{
+                      __html: content
+                    }}
+                  />
                   <Field>
                     <Control>
                       <S.Input
@@ -268,7 +269,7 @@ const PPCForm = ({ primary, items }) => {
             size: 6
           }}
           desktop={{
-            size: 6
+            size: 5
           }}
         >
           {success ? (
@@ -285,6 +286,7 @@ const PPCForm = ({ primary, items }) => {
             <S.Items>
               {items.map((item, index) => {
                 const content = generateContent({
+                  preheading: item.content_preheading.html,
                   title: item.content_title.html
                 });
                 const { url, internal } = generatePath(item.content_link);
@@ -321,7 +323,7 @@ const PPCForm = ({ primary, items }) => {
           )}
         </Column>
       </ColumnGroup>
-    </div>
+    </S.Container>
   );
 };
 
