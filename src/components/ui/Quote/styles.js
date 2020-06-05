@@ -2,17 +2,31 @@ import { Section as BSection, Content as BContent } from "rbx";
 import styled from "@emotion/styled";
 
 export const Section = styled(BSection)`
-  background-color: #303030;
+  background-color: #f5f5f5;
   padding: 6rem 1.5rem;
 `;
 
 export const Content = styled(BContent)`
-  color: #fff;
-  text-align: center;
+  color: #000;
   p {
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 42px;
   }
   span {
-    font-size: 14px;
+    font-size: 20px;
   }
+  .user,
+  .company {
+    display: block;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  text-align: center;
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  max-width: 200px;
 `;

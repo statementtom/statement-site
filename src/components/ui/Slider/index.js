@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
-import { Content } from 'rbx';
-import styled from '@emotion/styled';
+import React from "react";
+import PropTypes from "prop-types";
+import Img from "gatsby-image";
+import { Content } from "rbx";
+import styled from "@emotion/styled";
 
 const SliderContent = styled(Content)`
   display: flex;
@@ -47,12 +47,12 @@ const SliderContent = styled(Content)`
 const Slide = styled.div`
   position: relative;
   z-index: 3;
-  height: 80vh;
+  height: 65vh;
   .gatsby-image-wrapper {
     height: 100%;
     position: relative;
     &:after {
-      content: '';
+      content: "";
       background-color: #000;
       height: 100%;
       width: 100%;
@@ -75,42 +75,6 @@ const Slide = styled.div`
   }
 `;
 
-const ScrollCTA = styled.div`
-  cursor: pointer;
-  z-index: 3;
-  position: absolute;
-  bottom: 0%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  p {
-    color: #ffffff;
-    font-size: 11px;
-    letter-spacing: 3px;
-    line-height: 17px;
-    text-align: center;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    @media screen and (max-width: 768px) {
-      margin-bottom: 15px;
-    }
-  }
-  div {
-    height: 100px;
-    border-left: 1px solid;
-    border-image: linear-gradient(180deg, #fff 0, #fff 50%, #d0d0d0 0, #d0d0d0)
-      1 100%;
-    margin-bottom: -50px;
-    background-color: #fff;
-    @media screen and (max-width: 768px) {
-      height: 80px;
-      margin-bottom: -40px;
-    }
-  }
-`;
-
 const mobilePlus = `<svg
 xmlns="http://www.w3.org/2000/svg"
 viewBox="581.26000977 1265.19348145 1911.64257813 393.12670898"
@@ -123,16 +87,6 @@ height="30"
 </svg>`;
 
 const Slider = ({ slides }) => {
-  const handleClick = e => {
-    const { bottom } = e.target.getBoundingClientRect();
-    if (typeof window !== 'undefined') {
-      window.scrollTo({
-        top: bottom,
-        left: 0,
-        behavior: 'smooth',
-      });
-    }
-  };
   return (
     <div className="slide-wrapper">
       {slides.length > 0 &&
@@ -146,15 +100,10 @@ const Slider = ({ slides }) => {
               <SliderContent
                 className="has-text-centered"
                 dangerouslySetInnerHTML={{
-                  __html: `${mobilePlus} ${slide.slider_content.html}`,
+                  __html: `${mobilePlus} ${slide.slider_content.html}`
                 }}
               />
             )}
-
-            <ScrollCTA onClick={handleClick}>
-              <p>Take a scroll</p>
-              <div />
-            </ScrollCTA>
           </Slide>
         ))}
     </div>
@@ -162,7 +111,7 @@ const Slider = ({ slides }) => {
 };
 
 Slider.propTypes = {
-  slides: PropTypes.array.isRequired,
+  slides: PropTypes.array.isRequired
 };
 
 export default Slider;

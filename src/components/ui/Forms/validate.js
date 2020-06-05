@@ -5,7 +5,6 @@ const validate = (value, { name, type }) => {
       if (!value) {
         error = `${name} can't be blank`;
       }
-      console.log(error);
       return error || true;
     default:
       return false;

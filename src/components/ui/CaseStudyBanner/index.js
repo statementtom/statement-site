@@ -1,14 +1,14 @@
-import React from 'react';
-import { Section, Container, Column, Content } from 'rbx';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import styled from '@emotion/styled';
-import Img from 'gatsby-image';
+import React from "react";
+import { Section, Container, Column, Content } from "rbx";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import styled from "@emotion/styled";
+import Img from "gatsby-image";
 
 const CustomContent = styled(Content)`
   margin: 0;
   @media screen and (max-width: 768px) {
     margin: 0 0 30px 0;
-    padding: ${props => (props.alternate ? '0 1.5rem' : 'initial')};
+    padding: ${props => (props.alternate ? "0 1.5rem" : "initial")};
   }
   h1,
   h2,
@@ -16,6 +16,11 @@ const CustomContent = styled(Content)`
   h4,
   h5,
   h6 {
+    color: #000000;
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: -0.38px;
+    line-height: 60px;
     strong {
       color: #ce0527;
     }
@@ -32,18 +37,18 @@ const CustomContent = styled(Content)`
 
 const CustomSection = styled(Section)`
   padding: ${props =>
-    props.alternate ? '9rem 8rem 0rem 0rem' : '9rem 1.5rem'};
+    props.alternate ? "9rem 8rem 0rem 0rem" : "9rem 1.5rem"};
   @media screen and (max-width: 768px) {
-    padding: ${props => (props.alternate ? '3rem 0rem' : '3rem 1.5rem')};
+    padding: ${props => (props.alternate ? "3rem 0rem" : "3rem 1.5rem")};
   }
 `;
 
 const CaseStudyBanner = ({ primary }) => (
   <CustomSection
-    alternate={primary.alternate_layout === 'Yes'}
-    style={{ paddingBottom: primary.remove_padding === 'Yes' ? 0 : 'auto' }}
+    alternate={primary.alternate_layout === "Yes"}
+    style={{ paddingBottom: primary.remove_padding === "Yes" ? 0 : "auto" }}
   >
-    {primary.alternate_layout === 'No' ? (
+    {primary.alternate_layout === "No" ? (
       <Container>
         <ColumnGroup className="is-mobile is-multiline is-vcentered">
           <Column
@@ -53,7 +58,7 @@ const CaseStudyBanner = ({ primary }) => (
           >
             <CustomContent
               dangerouslySetInnerHTML={{
-                __html: primary.content.html,
+                __html: primary.content.html
               }}
             />
           </Column>
@@ -81,9 +86,9 @@ const CaseStudyBanner = ({ primary }) => (
             desktop={{ size: 4 }}
           >
             <CustomContent
-              alternate={primary.alternate_layout === 'Yes'}
+              alternate={primary.alternate_layout === "Yes"}
               dangerouslySetInnerHTML={{
-                __html: primary.content.html,
+                __html: primary.content.html
               }}
             />
           </Column>

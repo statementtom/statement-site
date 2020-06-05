@@ -121,12 +121,10 @@ export const Select = styled(BSelect.Container)`
 `;
 
 export const Notification = styled.div`
-  padding: 30px;
   background-color: #ce0527;
   color: #fff;
   border: 0;
   text-align: center;
-  color: #fff;
   line-height: 28px;
   font-size: 18px;
   display: inline-flex;
@@ -221,9 +219,22 @@ export const Item = styled.div`
     width: 100%;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
     @media screen and (max-width: 768px) {
       position: relative;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      &:not(:last-child) {
+        font-size: 18px;
+        text-transform: lowercase;
+        text-decoration: underline;
+      }
     }
     h1,
     h2,
@@ -236,6 +247,8 @@ export const Item = styled.div`
       font-weight: 500;
       color: #fff;
       margin: 0;
+      letter-spacing: -0.38px;
+      line-height: 42px;
       @media screen and (max-width: 768px) {
         font-size: 24px;
       }
@@ -312,5 +325,12 @@ export const AnchorButton = styled(AnchorLink)`
     svg path {
       fill: #ce0527;
     }
+  }
+`;
+
+export const Container = styled.div`
+  padding: ${props => (props.removeTopPadding ? "0" : "6rem")} 0 6rem 0;
+  @media screen and (max-width: 768px) {
+    padding: 0;
   }
 `;

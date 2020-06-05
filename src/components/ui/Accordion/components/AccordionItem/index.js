@@ -40,9 +40,10 @@ const AccordionItem = ({ item }) => {
         >
           <S.Header onClick={handleToggle}>
             <S.Toggle collapse={collapse}>
-              <Plus height={24} fill="#000" />
+              <Plus height={30} fill="#000" />
             </S.Toggle>
             <S.Title
+              active={collapse}
               dangerouslySetInnerHTML={{
                 __html: title
               }}
@@ -84,7 +85,7 @@ const AccordionItem = ({ item }) => {
                 offset: 1
               }}
             >
-              <Content
+              <S.Points
                 dangerouslySetInnerHTML={{
                   __html: points
                 }}
