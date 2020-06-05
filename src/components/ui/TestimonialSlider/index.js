@@ -33,7 +33,10 @@ const TestimonialText = styled(Content)`
 
 const CustomColumnGroup = styled(ColumnGroup)`
   position: relative;
-  margin-bottom: 200px !important;
+  margin-bottom: 6rem !important;
+  @media screen and (min-width: 1408px) {
+    margin-bottom: 9rem !important;
+  }
   @media screen and (max-width: 768px) {
     margin-bottom: 0 !important;
   }

@@ -11,9 +11,8 @@ const Accordion = ({ primary, items }) => {
   const content = generateContent({
     title: primary.content_title.html
   });
-  console.log(items);
   return (
-    <Section>
+    <S.Section>
       <Container>
         <ColumnGroup className="is-mobile is-multiline is-vcentered is-centered">
           <Column
@@ -43,7 +42,7 @@ const Accordion = ({ primary, items }) => {
           </S.AccordionItems>
         )}
       </Container>
-    </Section>
+    </S.Section>
   );
 };
 

@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 export const Section = styled(BSection)`
   background-color: #303030;
+  padding: 6rem 1.5rem;
 `;
 
 export const Content = styled(BContent)`

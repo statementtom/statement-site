@@ -14,14 +14,14 @@ export const Title = styled(Content)`
   h4,
   h5,
   h6 {
-    font-size: 30px;
+    font-size: 24px;
     color: #000;
     font-weight: 500;
     margin: 0;
     padding: 0;
 
     @media screen and (max-width: 768px) {
-      font-size: 24px;
+      font-size: 20px;
     }
   }
 `;
@@ -50,6 +50,7 @@ export const Toggle = styled.div`
 
 export const Body = styled(Content)`
   margin-top: 1rem;
+  color: #000;
 `;
 
 export const BodyContainer = styled(ColumnGroup)`

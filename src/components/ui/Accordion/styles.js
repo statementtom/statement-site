@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
-import { Content } from "rbx";
+import { Content, Section as BSection } from "rbx";
+
+export const Section = styled(BSection)`
+  padding: 6rem 1.5rem;
+`;
 
 export const Title = styled(Content)`
   * {
@@ -14,9 +18,14 @@ export const Title = styled(Content)`
     font-weight: 500;
     margin: 0;
     padding: 0;
+    font-size: 30px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+    }
   }
 `;
 
 export const AccordionItems = styled.div`
-  margin-top: 3rem;
+  margin-top: 6rem;
 `;
