@@ -25,17 +25,17 @@ const AccordionItem = ({ item }) => {
 
   return (
     <S.Container>
-      <ColumnGroup className="is-mobile is-multiline">
+      <ColumnGroup className="is-mobile is-multiline is-centered">
         <Column
           paddingless
           mobile={{
             size: 12
           }}
           tablet={{
-            size: 12
+            size: 10
           }}
           desktop={{
-            size: 12
+            size: 10
           }}
         >
           <S.Header onClick={handleToggle}>
