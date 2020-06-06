@@ -1,7 +1,7 @@
-import React from 'react';
-import { Section, Container, Content, Column } from 'rbx';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import styled from '@emotion/styled';
+import React from "react";
+import { Section, Container, Content, Column } from "rbx";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import styled from "@emotion/styled";
 
 const CustomContent = styled(Content)`
   * {
@@ -41,10 +41,10 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   max-width: 150px;
-  max-height: 150px;
+  max-height: 80px;
   @media screen and (max-width: 768px) {
     max-width: 100px;
-    max-height: 100px;
+    max-height: 80px;
   }
 `;
 
@@ -60,7 +60,7 @@ const FullWidthLogoList = ({ primary, items }) => (
           >
             <CustomContent
               dangerouslySetInnerHTML={{
-                __html: primary.content.html,
+                __html: primary.content.html
               }}
             />
           </Column>
