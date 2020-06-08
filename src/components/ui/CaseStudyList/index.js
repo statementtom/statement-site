@@ -14,7 +14,7 @@ import { SETTINGS } from "./constants";
 
 import * as S from "./styles";
 
-const CaseStudyList = ({ cases }) => {
+const CaseStudyList = ({ items }) => {
   const [mounted, setMounted] = useState(false);
   const sliderRef = useRef(null);
   const matchMedia = useMedia("(max-width: 768px)");
@@ -32,7 +32,7 @@ const CaseStudyList = ({ cases }) => {
     return (
       <S.Container>
         <Carousel ref={sliderRef} settings={SETTINGS}>
-          {cases.map((item, index) => (
+          {items.map((item, index) => (
             <div key={index}>
               <S.Item onClick={() => handleClick(item.link)}>
                 <Img
@@ -48,7 +48,7 @@ const CaseStudyList = ({ cases }) => {
             </div>
           ))}
         </Carousel>
-        {matchMedia || cases.length > 3 ? (
+        {matchMedia || items.length > 3 ? (
           <>
             <Arrow ml="10px" left onClick={() => sliderRef.current.slickPrev()}>
               <AngleLeftArrow height="24" />

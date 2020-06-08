@@ -29,6 +29,10 @@ import Content from "../components/ui/Content";
 import CaseStudyGrid from "../components/ui/CaseStudyGrid";
 import CaseStudyBanner from "../components/ui/CaseStudyBanner";
 import HtmlBlock from "../components/ui/HtmlBlock";
+import TextImageSimple from "../components/ui/TextImageSimple";
+import Quote from "../components/ui/Quote";
+import PPCForm from "../components/ui/Forms/ppc";
+import Accordion from "../components/ui/Accordion";
 
 // Component Level GraphQL Fragments
 import { PageBodyBannerFragment } from "../components/ui/Banner/fragment";
@@ -52,11 +56,6 @@ import { PrismicPageBodySliderFragment } from "../components/ui/Slider/fragment"
 import { PrismicPageBodyLogoListFragment } from "../components/ui/LogoList/fragment";
 import { PrismicPageBodyCaseStudyBannerFragment } from "../components/ui/CaseStudyBanner/fragment";
 import { PrismicPageBodyHtmlFragment } from "../components/ui/HtmlBlock/fragment";
-import TextImageSimple from "../components/ui/TextImageSimple";
-import Quote from "../components/ui/Quote";
-import { Section } from "rbx";
-import PPCForm from "../components/ui/Forms/ppc";
-import Accordion from "../components/ui/Accordion";
 
 export const pageQuery = graphql`
   query Page($uid: String) {

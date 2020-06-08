@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { Section, Container, Column, Content } from "rbx";
+import React from "react";
+import { Container, Column, Content } from "rbx";
 import { ColumnGroup } from "rbx/grid/columns/column-group";
 import generateContent from "../../../util/generateContent";
 
-import AccordionItem from "./components/AccordionItem";
+import Item from "./components/Item";
 
 import * as S from "./styles";
 
@@ -37,7 +37,7 @@ const Accordion = ({ primary, items }) => {
         {items && items.length && (
           <S.AccordionItems>
             {items.map((item, index) => {
-              return <AccordionItem key={index} item={item} />;
+              return <Item key={index} item={item} />;
             })}
           </S.AccordionItems>
         )}

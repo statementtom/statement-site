@@ -1,3 +1,5 @@
+const { linkResolver } = require("./src/util/routes/linkResolver");
+
 const path = require(`path`);
 
 module.exports = {
@@ -86,25 +88,7 @@ module.exports = {
         repositoryName: "statement-site", // (REQUIRED, replace with your own)
         accessToken:
           "MC5YVXJGM2hFQUFDQUExQ2Yt.VO-_vTXvv73vv73vv70BZzwn77-9Be-_ve-_vW4k77-977-977-9En3vv73vv70A77-9IWku77-9bO-_vR4", // (optional API access token)
-        linkResolver: () => doc => {
-          if (doc.type === "page") {
-            return `/${doc.uid}/`;
-          }
-          if (doc.type === "case") {
-            return `/results/${doc.uid}/`;
-          }
-          if (doc.type === "event") {
-            return `/events/${doc.uid}/`;
-          }
-          if (doc.type === "career") {
-            return `/careers/${doc.uid}/`;
-          }
-          if (doc.type === "resource") {
-            return `/resource/${doc.uid}/`;
-          }
-          // Backup for all other types
-          return "/";
-        },
+        linkResolver: linkResolver,
         htmlSerializer: ({ node, key, value }) => (
           type,
           element,

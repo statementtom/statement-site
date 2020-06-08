@@ -239,7 +239,7 @@ const Home = ({
           return (
             <CaseStudyList
               key={`${section.id}-${index}`}
-              cases={section.items}
+              items={section.items}
             />
           );
         }
