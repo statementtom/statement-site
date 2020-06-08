@@ -1,13 +1,9 @@
 import styled from "@emotion/styled";
 import { Content as BContent } from "rbx";
 
-export const Container = styled.div`
-  position: relative;
-`;
-
 export const Item = styled.div`
   display: block;
-  height: 70vh;
+  height: 80vh;
   position: relative;
   z-index: 3;
   &:after {
@@ -22,11 +18,11 @@ export const Item = styled.div`
     background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 100%
+      rgba(0, 0, 0, 0.9) 100%
     );
   }
   .gatsby-image-wrapper {
-    height: 70vh;
+    height: 80vh;
   }
   @media screen and (max-width: 768px) {
     height: 650px;
@@ -77,5 +73,12 @@ export const Content = styled(BContent)`
   }
   p {
     font-weight: 300;
+  }
+`;
+
+export const Container = styled.div`
+  position: relative;
+  .slick-slide {
+    max-height: 80vh;
   }
 `;

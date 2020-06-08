@@ -1,4 +1,5 @@
 import React from "react";
+import { navigate } from "gatsby";
 import { Column } from "rbx";
 import PropTypes from "prop-types";
 import Img from "gatsby-image";
@@ -9,6 +10,12 @@ import * as S from "./styles";
 
 const CaseStudyGrid = ({ items }) => {
   if (!items || items.length === 0) return null;
+
+  const handleClick = link => {
+    if (!link) return;
+    navigate(linkResolver(link.type, link.uid));
+  };
+
   return (
     <S.Container>
       <ColumnGroup className="is-mobile is-multiline">
@@ -20,7 +27,7 @@ const CaseStudyGrid = ({ items }) => {
             desktop={{ size: 4 }}
             key={index}
           >
-            <S.Item to={linkResolver(item.link.type, item.link.uid)}>
+            <S.Item onClick={() => handleClick(item.link)}>
               <Img
                 fluid={item.image.localFile.childImageSharp.fluid}
                 alt={item.image.alt}

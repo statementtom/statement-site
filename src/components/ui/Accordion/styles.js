@@ -18,8 +18,8 @@ export const Title = styled(Content)`
     font-weight: 500;
     margin: 0;
     padding: 0;
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 38px;
+    line-height: 58px;
     @media screen and (max-width: 768px) {
       font-size: 30px;
       line-height: 40px;

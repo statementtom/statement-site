@@ -3,7 +3,7 @@ import { Content } from "rbx";
 import { ColumnGroup } from "rbx/grid/columns/column-group";
 
 export const Container = styled.div`
-  margin-bottom: 3rem;
+  margin-bottom: calc(3rem + 20px);
 `;
 
 export const Title = styled(Content)`
@@ -58,6 +58,7 @@ export const Toggle = styled.div`
 export const Body = styled(Content)`
   margin-top: 1rem;
   color: #000;
+  font-weight: 300;
 `;
 
 export const BodyContainer = styled(ColumnGroup)`
@@ -68,4 +69,5 @@ export const BodyContainer = styled(ColumnGroup)`
 
 export const Points = styled(Content)`
   color: #000;
+  font-weight: 300;
 `;

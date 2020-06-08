@@ -5,6 +5,7 @@ export const PrismicPageBodyFullWidthLogoListFragment = graphql`
     id
     slice_type
     primary {
+      section_size
       content {
         html
       }

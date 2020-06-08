@@ -12,7 +12,7 @@ import generateScrollTo from "../../../util/generateScrollTo";
 
 const BannerItem = styled.div`
   position: relative;
-  height: ${props => (props.hasCTA ? "80vh" : "65vh")};
+  height: 65vh;
   .gatsby-image-wrapper {
     height: 100%;
   }
@@ -148,7 +148,7 @@ const Banner = ({
 }) => {
   const enableScrollTo = primary.enable_scroll_to;
   return (
-    <BannerItem large={!!large} article={article} hasCTA={enableScrollTo}>
+    <BannerItem large={!!large} article={article}>
       {imageOverride ? (
         <Img fluid={imageOverride.childImageSharp.fluid} />
       ) : (

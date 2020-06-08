@@ -232,7 +232,7 @@ export const Item = styled.div`
     h6 {
       &:not(:last-child) {
         font-size: 18px;
-        text-transform: lowercase;
+        text-transform: capitalize;
         text-decoration: underline;
       }
     }
@@ -243,7 +243,6 @@ export const Item = styled.div`
     h5,
     h6 {
       font-size: 30px;
-      text-transform: lowercase;
       font-weight: 500;
       color: #fff;
       margin: 0;
@@ -264,7 +263,6 @@ export const Title = styled(BContent)`
   h5,
   h6 {
     font-size: 30px;
-    text-transform: lowercase;
     font-weight: 500;
   }
 `;
@@ -290,7 +288,10 @@ export const Image = styled.div`
 `;
 
 export const Content = styled(BContent)`
-  padding: 1rem;
+  padding: 1rem 4rem;
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const AnchorButton = styled(AnchorLink)`
@@ -329,7 +330,7 @@ export const AnchorButton = styled(AnchorLink)`
 `;
 
 export const Container = styled.div`
-  padding: ${props => (props.removeTopPadding ? "0" : "6rem")} 0 6rem 0;
+  padding: ${props => (props.removeTopPadding ? "3rem" : "6rem")} 0 6rem 0;
   @media screen and (max-width: 768px) {
     padding: 0;
   }
