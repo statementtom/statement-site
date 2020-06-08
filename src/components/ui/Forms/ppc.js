@@ -15,7 +15,7 @@ import BackgroundImage from "gatsby-background-image";
 import { navigate } from "gatsby";
 import { useMedia } from "react-use";
 
-const PPCForm = ({ primary, items }) => {
+const PPCForm = ({ primary, items, uid }) => {
   const mobile = useMedia("(max-width: 768px)");
   const recaptchaRef = useRef(null);
   const formSectionsRef = useRef(null);
@@ -44,7 +44,7 @@ const PPCForm = ({ primary, items }) => {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": "ppc_landing",
+        "form-name": uid,
         "g-recaptcha-response": recaptcha,
         ...data
       })
@@ -57,7 +57,7 @@ const PPCForm = ({ primary, items }) => {
         reset();
         setRecaptchaMessage("");
         window.dataLayer.push({
-          event: "ppc-landing-form-submit"
+          event: `${uid}-form-submit`
         });
       })
       .catch(() => setSuccess(false));
@@ -96,7 +96,7 @@ const PPCForm = ({ primary, items }) => {
             size: 12
           }}
           tablet={{
-            size: 6,
+            size: 6
           }}
           desktop={{
             size: 5,
@@ -105,7 +105,7 @@ const PPCForm = ({ primary, items }) => {
         >
           <Section size="small">
             <form
-              name="ppc_landing"
+              name={uid}
               method="POST"
               onSubmit={handleSubmit(onSubmit)}
               data-netlify="true"
@@ -126,7 +126,7 @@ const PPCForm = ({ primary, items }) => {
                     size: 10
                   }}
                 >
-                  <input type="hidden" name="form-name" value="ppc_landing" />
+                  <input type="hidden" name="form-name" value={uid} />
                   <p hidden>
                     <input
                       name="bot-field"

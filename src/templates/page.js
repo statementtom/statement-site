@@ -67,6 +67,7 @@ export const pageQuery = graphql`
       }
     }
     prismicPage(uid: { eq: $uid }) {
+      uid
       data {
         description {
           text
@@ -220,7 +221,7 @@ export const pageQuery = graphql`
 
 const Page = ({
   data: {
-    prismicPage: { data },
+    prismicPage: { data, uid },
     site: { siteMetadata: meta }
   }
 }) => {
@@ -413,6 +414,7 @@ const Page = ({
           return (
             <PPCForm
               key={`${section.id}-${index}`}
+              uid={uid}
               primary={section.primary}
               items={section.items}
             />
