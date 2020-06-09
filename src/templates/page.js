@@ -56,6 +56,7 @@ import { PrismicPageBodySliderFragment } from "../components/ui/Slider/fragment"
 import { PrismicPageBodyLogoListFragment } from "../components/ui/LogoList/fragment";
 import { PrismicPageBodyCaseStudyBannerFragment } from "../components/ui/CaseStudyBanner/fragment";
 import { PrismicPageBodyHtmlFragment } from "../components/ui/HtmlBlock/fragment";
+import PerkGrid from "../components/ui/PerkGrid";
 
 export const pageQuery = graphql`
   query Page($uid: String) {
@@ -210,6 +211,24 @@ export const pageQuery = graphql`
               accordion_points {
                 html
               }
+            }
+          }
+          ... on PrismicPageBodyPerkGrid {
+            id
+            slice_type
+            primary {
+              content_title {
+                html
+              }
+            }
+            items {
+              content_title {
+                html
+              }
+              content_copy {
+                html
+              }
+              content_icon
             }
           }
         }
@@ -422,6 +441,15 @@ const Page = ({
         if (section.slice_type === "accordion") {
           return (
             <Accordion
+              key={`${section.id}-${index}`}
+              primary={section.primary}
+              items={section.items}
+            />
+          );
+        }
+        if (section.slice_type === "perk_grid") {
+          return (
+            <PerkGrid
               key={`${section.id}-${index}`}
               primary={section.primary}
               items={section.items}

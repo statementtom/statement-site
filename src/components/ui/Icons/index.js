@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export const Logo = ({ fill = '#fff' }) => (
+export const Logo = ({ fill = "#fff" }) => (
   <svg viewBox="0 0 137 21" xmlns="http://www.w3.org/2000/svg">
     <g fill="none" fillRule="evenodd">
       <path
@@ -69,7 +69,7 @@ export const Instagram = () => (
   </svg>
 );
 
-export const Facebook = ({ height = 18, fill = 'currentColor' }) => (
+export const Facebook = ({ height = 18, fill = "currentColor" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fab"
@@ -86,7 +86,7 @@ export const Facebook = ({ height = 18, fill = 'currentColor' }) => (
   </svg>
 );
 
-export const Twitter = ({ height = 18, fill = 'currentColor' }) => (
+export const Twitter = ({ height = 18, fill = "currentColor" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fab"
@@ -103,7 +103,7 @@ export const Twitter = ({ height = 18, fill = 'currentColor' }) => (
   </svg>
 );
 
-export const Linkedin = ({ height = 18, fill = 'currentColor' }) => (
+export const Linkedin = ({ height = 18, fill = "currentColor" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fab"
@@ -138,9 +138,9 @@ export const Youtube = () => (
 );
 
 export const LongRightArrow = ({
-  fill = 'currentColor',
-  size = '24',
-  style = {},
+  fill = "currentColor",
+  size = "24",
+  style = {}
 }) => (
   <svg
     aria-hidden="true"
@@ -159,7 +159,7 @@ export const LongRightArrow = ({
   </svg>
 );
 
-export const AngleRightArrow = ({ height = '20' }) => (
+export const AngleRightArrow = ({ height = "20" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fal"
@@ -176,7 +176,7 @@ export const AngleRightArrow = ({ height = '20' }) => (
   </svg>
 );
 
-export const AngleLeftArrow = ({ height = '20' }) => (
+export const AngleLeftArrow = ({ height = "20" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fal"
@@ -203,7 +203,7 @@ export const Speech = ({ height = 20 }) => (
   </svg>
 );
 
-export const Calendar = ({ height = 20, fill = 'currentColor' }) => (
+export const Calendar = ({ height = 20, fill = "currentColor" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fal"
@@ -220,7 +220,7 @@ export const Calendar = ({ height = 20, fill = 'currentColor' }) => (
   </svg>
 );
 
-export const Clock = ({ height = 20, fill = 'currentColor' }) => (
+export const Clock = ({ height = 20, fill = "currentColor" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fal"
@@ -237,7 +237,7 @@ export const Clock = ({ height = 20, fill = 'currentColor' }) => (
   </svg>
 );
 
-export const GeoPin = ({ height = 20, fill = 'currentColor' }) => (
+export const GeoPin = ({ height = 20, fill = "currentColor" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fal"
@@ -254,7 +254,7 @@ export const GeoPin = ({ height = 20, fill = 'currentColor' }) => (
   </svg>
 );
 
-export const Plus = ({ height = 20, fill = 'currentColor' }) => (
+export const Plus = ({ height = 20, fill = "currentColor" }) => (
   <svg
     aria-hidden="true"
     data-prefix="fal"
@@ -271,7 +271,7 @@ export const Plus = ({ height = 20, fill = 'currentColor' }) => (
   </svg>
 );
 
-export const ShopifyPlus = ({ height = 20, fill = '#fff' }) => (
+export const ShopifyPlus = ({ height = 20, fill = "#fff" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="581.26000977 1265.19348145 1911.64257813 393.12670898"
@@ -301,7 +301,7 @@ export const Download = () => (
   </svg>
 );
 
-export const Location = ({ height = 20, fill = 'currentColor' }) => (
+export const Location = ({ height = 20, fill = "currentColor" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
@@ -318,7 +318,7 @@ export const Location = ({ height = 20, fill = 'currentColor' }) => (
   </svg>
 );
 
-export const IDHL = ({ height = 20, fill = 'currentColor' }) => (
+export const IDHL = ({ height = 20, fill = "currentColor" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 60" height={height}>
     <path
       fill={fill}
@@ -327,3 +327,213 @@ export const IDHL = ({ height = 20, fill = 'currentColor' }) => (
     />
   </svg>
 );
+
+export const Utensils = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="utensils"
+      className="svg-inline--fa fa-utensils fa-w-17"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 544 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M288 157.5c0-30.5-12.9-97.8-15.6-111.7C267.5 20.1 244.1 0 210.6 0c-11.4 0-23.1 2.4-33.3 7.8C167.3 2.5 155.5 0 144 0c-11.5 0-23.3 2.5-33.3 7.8C100.6 2.4 88.8 0 77.4 0 44.1 0 20.5 19.9 15.6 45.8 12.9 59.6 0 126.9 0 157.5c0 52.7 28.2 94.8 69.8 116.7L59.6 454.9c-1.8 31 23.1 57.1 54.4 57.1h60c31.3 0 56.2-26.1 54.4-57.1l-10.2-180.8c41.4-21.7 69.8-63.8 69.8-116.6zm-119.7 83.6l12.2 216.5c.2 3.4-2.7 6.4-6.5 6.4h-60c-3.7 0-6.7-2.9-6.5-6.4l12.2-216.5C77.3 233 48 201.3 48 157.5c0-27.6 14.8-102.7 14.8-102.7 1.6-9.2 28.3-9 29.5.2v113.7c.9 10.6 28.2 10.8 29.5.2l7.4-114.1c1.6-9 27.9-9 29.5 0l7.4 114.1c1.3 10.6 28.6 10.4 29.5-.2V55c1.2-9.2 27.9-9.4 29.5-.2 0 0 14.8 75.1 14.8 102.7.1 43.6-29 75.4-71.6 83.6zm221.2 69.5l-13.3 142.5c-2.9 31.6 22.7 58.9 55.8 58.9h56c30.9 0 56-24.2 56-54V54c0-29.8-25.1-54-56-54-71.8 0-168 83-168 181.7 0 60.4 35 101.2 69.5 128.9zM368 181.7C368 109.1 443.4 48 488 48c4.3 0 8 2.8 8 6v404c0 3.3-3.7 6-8 6h-56c-4.6 0-8.3-3-8-6.4l15.8-169.5c-39.6-27-71.8-59-71.8-106.4z"
+      />
+    </svg>
+  );
+};
+
+export const Plane = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="fal"
+      data-icon="plane"
+      className="svg-inline--fa fa-plane fa-w-18"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 576 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M480 192H365.71L260.61 8.06A16.014 16.014 0 0 0 246.71 0h-88.36c-10.63 0-18.3 10.17-15.38 20.39L192 192h-64l-43.2-57.6c-3.02-4.03-7.77-6.4-12.8-6.4H16.01C5.6 128-2.04 137.78.49 147.88L32 256 .49 364.12C-2.04 374.22 5.6 384 16.01 384H72c5.04 0 9.78-2.37 12.8-6.4L128 320h64l-49.03 171.6c-2.92 10.22 4.75 20.4 15.38 20.4h88.36c5.74 0 11.04-3.08 13.89-8.06L365.71 320H480c35.35 0 96-28.65 96-64s-60.65-64-96-64zm0 96H347.14L237.43 480h-57.86l54.86-192H112l-48 64H37.35l27.98-96-28-96H64l48 64h122.42L179.57 32h57.87l109.71 192H480c26.24 0 62.61 21.75 64 31.91-1.39 10.34-37.76 32.09-64 32.09z"
+      />
+    </svg>
+  );
+};
+
+export const PiggyBank = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="piggy-bank"
+      className="svg-inline--fa fa-piggy-bank fa-w-18"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 576 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M560 224h-29.5c-11.1-25.3-28.7-46.9-50.5-63.4V96h-16c-30.3 0-57.8 10.1-81 26.2.4-3.4 1-6.7 1-10.2C384 50.1 333.9 0 272 0S160 50.1 160 112c0 9.7 1.5 19 3.8 27.9C114.9 159.8 78 203.1 67.2 256H56c-14.8 0-26.5-13.5-23.5-28.8C34.7 215.8 45.4 208 57 208h1c3.3 0 6-2.7 6-6v-20c0-3.3-2.7-6-6-6-28.5 0-53.9 20.4-57.5 48.6C-3.9 258.8 22.7 288 56 288h8c0 52.2 25.4 98.1 64 127.3V496c0 8.8 7.2 16 16 16h112c8.8 0 16-7.2 16-16v-48h64v48c0 8.8 7.2 16 16 16h112c8.8 0 16-7.2 16-16v-80.9c11.7-9 22.4-19.3 31.3-31.1H560c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16zM272 48c35.3 0 64 28.7 64 64 0 5.6-.9 10.9-2.3 16H224c-4.5 0-8.8 1-13.3 1.3-1.6-5.5-2.7-11.3-2.7-17.3 0-35.3 28.7-64 64-64zm256 288h-40.6c-23.5 31.1-19.4 27.9-55.4 55.4V464h-48v-64H224v64h-48v-72.6c-14.6-11-64-39.8-64-103.4 0-61.8 50.2-112 112-112h167.4c9.5-7.6 22.2-19.3 40.6-26.2v34.7c45.4 34.4 44.2 35.2 67.1 87.5H528v64zm-96-80c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16z"
+      />
+    </svg>
+  );
+};
+
+export const Fruits = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="apple-crate"
+      className="svg-inline--fa fa-apple-crate fa-w-18"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 576 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M434.22 50.47c11.29-12.19 14.43-32.03 13.22-50.22-12.88-.86-35.67-.12-50.02 13.28-16.53 16.6-13.77 46.36-13.22 50.22 18.47 1.23 37.77-1.85 50.02-13.28zm-191.69 0c11.29-12.19 14.43-32.03 13.22-50.22-12.88-.86-35.67-.12-50.02 13.28-16.53 16.6-13.77 46.36-13.22 50.22 18.47 1.23 37.77-1.85 50.02-13.28zM560 192h-49.71c3.97-26.97.44-63.55-17.22-89.06-11.25-16.31-27.09-26.7-45.78-30.06l-.29-.05c-18.22-3.02-43.56 3.02-63 11.41-19.5-8.39-44.91-14.39-63.28-11.36-12.35 2.23-23.3 7.82-32.68 15.9-9.39-8.09-20.36-13.67-32.76-15.9l-.28-.05c-18.22-3.02-43.56 3.02-63 11.41-19.47-8.41-45-14.36-63.28-11.36-18.62 3.36-34.44 13.73-45.69 30.03-17.76 25.71-21.32 62.47-17.34 89.09H16c-8.84 0-16 7.16-16 16v288c0 8.84 7.16 16 16 16h544c8.84 0 16-7.16 16-16V208c0-8.84-7.16-16-16-16zm-245.5-61.8c5.25-7.61 10.91-9.41 14.44-10.03 6.78-1.17 28.5 3.37 43.38 11.69l11.69 6.55 11.72-6.56c14.78-8.27 36.19-12.81 43.25-11.69 3.81.7 9.44 2.56 14.62 10.06 10.12 14.66 12.22 40.64 9 58.03-.23 1.37-.76 2.42-1.02 3.75H318.29c2.64-17.95 1.48-40.01-4.47-60.38.27-.42.4-1.01.68-1.42zm-191.97 0c5.25-7.61 10.91-9.41 14.38-10.03 7.03-.95 28.5 3.36 43.38 11.67l11.72 6.56 11.72-6.56c14.78-8.27 36.16-12.81 43.25-11.69 6 1.12 10.69 4.33 14.66 10.09 10.12 14.64 12.19 40.61 8.97 58-.23 1.37-.76 2.42-1.02 3.75h-155.1c-.29-1.47-.87-2.62-1.12-4.14-3.18-16.94-1.03-42.93 9.16-57.65zM528 464H48v-88h480v88zm0-136H48v-88h480v88zM96 304c8.84 0 16-7.16 16-16s-7.16-16-16-16-16 7.16-16 16 7.16 16 16 16zm384 128c8.84 0 16-7.16 16-16s-7.16-16-16-16-16 7.16-16 16 7.16 16 16 16zm-384 0c8.84 0 16-7.16 16-16s-7.16-16-16-16-16 7.16-16 16 7.16 16 16 16zm384-128c8.84 0 16-7.16 16-16s-7.16-16-16-16-16 7.16-16 16 7.16 16 16 16z"
+      />
+    </svg>
+  );
+};
+
+export const Coffee = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="coffee"
+      className="svg-inline--fa fa-coffee fa-w-20"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 640 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M512 32H112c-8.8 0-16 7.2-16 16v256c0 44.2 35.8 80 80 80h224c44.2 0 80-35.8 80-80v-16h32c70.6 0 128-57.4 128-128S582.6 32 512 32zm-80 272c0 17.6-14.4 32-32 32H176c-17.6 0-32-14.4-32-32V80h288v224zm80-64h-32V80h32c44.1 0 80 35.9 80 80s-35.9 80-80 80zm55.8 240H40.2c-37.3 0-50.2-48-32-48h591.7c18.1 0 5.2 48-32.1 48z"
+      />
+    </svg>
+  );
+};
+
+export const Biking = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="biking"
+      className="svg-inline--fa fa-biking fa-w-20"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 640 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M400 96a48 48 0 1 0-48-48 48 48 0 0 0 48 48zM128 256a128 128 0 1 0 128 128 128 128 0 0 0-128-128zm0 208a80 80 0 1 1 80-80 80.09 80.09 0 0 1-80 80zm384-208a128 128 0 1 0 128 128 128 128 0 0 0-128-128zm0 208a80 80 0 1 1 80-80 80.09 80.09 0 0 1-80 80zM401 210.73a24 24 0 0 0 15 5.27h64a24 24 0 0 0 0-48h-55.59L351 109.27a24 24 0 0 0-30.62.51l-104 89.11a32 32 0 0 0 3.06 50.94l76.53 51V416a24 24 0 0 0 48 0V288a24 24 0 0 0-10.69-20l-50.11-33.4 71.29-61.1z"
+      />
+    </svg>
+  );
+};
+
+export const Bed = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="bed-alt"
+      className="svg-inline--fa fa-bed-alt fa-w-16"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M80,160a32,32,0,0,1,32-32h96a32,32,0,0,1,32,32v32h32V160a32,32,0,0,1,32-32h96a32,32,0,0,1,32,32v32h48V64a32,32,0,0,0-32-32H64A32,32,0,0,0,32,64V192H80Zm368,64H64A64,64,0,0,0,0,288V464a16,16,0,0,0,16,16H32a16,16,0,0,0,16-16V416H464v48a16,16,0,0,0,16,16h16a16,16,0,0,0,16-16V288A64,64,0,0,0,448,224Zm16,144H48V288a16,16,0,0,1,16-16H448a16,16,0,0,1,16,16Z"
+      />
+    </svg>
+  );
+};
+
+export const Celebrate = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="glass-cheers"
+      className="svg-inline--fa fa-glass-cheers fa-w-20"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 640 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M587.6 414.1l-29.8 11.7-40.5-103c50.9-33.5 70.1-100.2 40.2-154.3l-84.1-152C467.6 6.1 456.8 0 445.4 0c-3.9 0-7.9.7-11.7 2.2L320 46.9 206.3 2.2C202.5.7 198.5 0 194.6 0c-11.3 0-22.2 6.1-28 16.5l-84.1 152c-29.9 54.1-10.7 120.8 40.2 154.3l-40.5 103-29.8-11.7c-20.6-8.1-43.8 2-51.9 22.6-1.6 4.1.4 8.8 4.5 10.4l163.8 64.4c4.1 1.6 8.8-.4 10.4-4.5 8.1-20.6-2-43.8-22.6-51.9l-29.8-11.7L167.1 341c8 1.6 16 2.5 23.8 2.5 52.6 0 100.9-34.2 114.2-87.4l14.8-59.6 14.8 59.6c13.2 53.2 61.5 87.4 114.2 87.4 7.9 0 15.9-.9 23.8-2.5l40.2 102.3-29.8 11.7c-20.6 8.1-30.7 31.3-22.6 51.9 1.6 4.1 6.3 6.1 10.4 4.5l164-64.4c4.1-1.6 6.1-6.3 4.5-10.4-8-20.5-31.3-30.6-51.8-22.5zm-329-169.6c-7.5 30-35.3 51-67.6 51-9.4 0-18.7-1.8-27.8-5.3-20.1-7.9-35.7-23.8-42.8-43.5-6.7-18.5-5.2-38 4.1-54.8l25.1-45.3 121.5 47.8-12.5 50.1zm24.2-97.2L173 104.1 201.8 52l95.4 37.5-14.4 57.8zm74.4 0l-14.4-57.7L438.2 52l28.8 52.1-109.8 43.2zm119.6 142.8c-9 3.5-18.3 5.3-27.8 5.3-32.3 0-60.1-21-67.6-51l-12.5-50.3 121.5-47.8 25.1 45.3c9.3 16.8 10.8 36.3 4.1 54.8-7.1 19.9-22.7 35.8-42.8 43.7z"
+      />
+    </svg>
+  );
+};
+
+export const Beer = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="beer"
+      className="svg-inline--fa fa-beer fa-w-14"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 448 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M152 152v208c0 13.255-10.745 24-24 24s-24-10.745-24-24V152c0-13.255 10.745-24 24-24s24 10.745 24 24zm72-24c-13.255 0-24 10.745-24 24v208c0 13.255 10.745 24 24 24s24-10.745 24-24V152c0-13.255-10.745-24-24-24zm224 40v145.288c0 27.985-16.418 53.646-41.827 65.373L352 403.664V432c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h256c26.51 0 48 21.49 48 48v16h24c39.701 0 72 32.299 72 72zM298 80H54c-3.314 0-6 2.678-6 5.992v340.016A5.993 5.993 0 0 0 54 432h244a6 6 0 0 0 6-6V86a6 6 0 0 0-6-6zm102 88c0-13.233-10.767-24-24-24h-24v206.798l34.058-15.719c8.47-3.909 13.942-12.463 13.942-21.791V168z"
+      />
+    </svg>
+  );
+};
+
+export const Car = ({ height = 20 }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="far"
+      data-icon="car"
+      className="svg-inline--fa fa-car fa-w-16"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      height={height}
+    >
+      <path
+        fill="currentColor"
+        d="M499.99 192.01h-52.21l-31.36-77.88C404.24 83.84 374.86 64 342.22 64H169.78c-32.64 0-62.02 19.84-74.21 50.12L64.21 192h-52.2C4.2 192-1.53 199.34.37 206.91l6 24A12.01 12.01 0 0 0 18.01 240h11.31C21.04 254.16 16 270.41 16 287.99V424c0 13.25 10.75 24 24 24h16c13.25 0 24-10.75 24-24v-24h352v24c0 13.25 10.75 24 24 24h16c13.25 0 24-10.75 24-24V288c0-17.59-5.04-33.84-13.31-47.99H494c5.51 0 10.31-3.75 11.64-9.09l6-24c1.89-7.58-3.84-14.91-11.65-14.91zM140.1 132.05C145 119.87 156.65 112 169.78 112h172.44c13.13 0 24.78 7.87 29.68 20.05l24.13 59.94H115.97l24.13-59.94zM448 336c0 8.82-7.18 16-16 16H80c-8.82 0-16-7.18-16-16v-48c0-26.47 21.53-48 48-48h288c26.47 0 48 21.53 48 48v48zm-320-72.01c-19.2 0-32 12.76-32 31.91s12.8 31.91 32 31.91 48 3.19 48-15.96c0-19.14-28.8-47.86-48-47.86zm256 0c-19.2 0-48 28.72-48 47.86 0 19.15 28.8 15.96 48 15.96s32-12.76 32-31.91c0-19.14-12.8-31.91-32-31.91z"
+      />
+    </svg>
+  );
+};
