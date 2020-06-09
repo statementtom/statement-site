@@ -1,5 +1,13 @@
-import React, { useRef, useState } from "react";
-import { Section, Column, Content, Field, Control, Select } from "rbx";
+import React, { useRef, useState, Fragment } from "react";
+import {
+  Section,
+  Column,
+  Content,
+  Field,
+  Control,
+  Select,
+  Container
+} from "rbx";
 import { useForm } from "react-hook-form/dist/react-hook-form.ie11";
 import { ColumnGroup } from "rbx/grid/columns/column-group";
 
@@ -64,7 +72,8 @@ const PPCForm = ({ primary, items, uid }) => {
   };
 
   const content = generateContent({
-    title: primary.content_title.html
+    title: primary.content_title.html,
+    ...(primary.content_copy && { content: primary.content_copy.html })
   });
 
   const generatePath = ({ link_type, url }) => {
@@ -88,242 +97,263 @@ const PPCForm = ({ primary, items, uid }) => {
   };
 
   return (
-    <S.Container id="ppc-form" removeTopPadding={primary.content_top_padding}>
-      <ColumnGroup className="is-mobile is-multiline">
-        <Column
-          paddingless
-          mobile={{
-            size: 12
-          }}
-          tablet={{
-            size: 6
-          }}
-          desktop={{
-            size: 5,
-            offset: 1
-          }}
-        >
-          <Section size="small">
-            <form
-              name={uid}
-              method="POST"
-              onSubmit={handleSubmit(onSubmit)}
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              data-netlify-recaptcha="true"
-            >
-              <ColumnGroup className="is-mobile is-multiline is-centered">
-                <Column
-                  paddingless
-                  marginless
-                  mobile={{
-                    size: 12
-                  }}
-                  tablet={{
-                    size: 12
-                  }}
-                  desktop={{
-                    size: 10
-                  }}
-                >
-                  <input type="hidden" name="form-name" value={uid} />
-                  <p hidden>
-                    <input
-                      name="bot-field"
-                      value={honeyPot}
-                      onChange={e => setHoneyPot(e.target.value)}
-                    />
-                  </p>
-                  <S.Title
-                    dangerouslySetInnerHTML={{
-                      __html: content
+    <Fragment>
+      {primary.content_additional && (
+        <Container>
+          <hr />
+        </Container>
+      )}
+
+      <S.Container id="ppc-form" removeTopPadding={primary.content_top_padding}>
+        <ColumnGroup className="is-mobile is-multiline">
+          <Column
+            paddingless
+            mobile={{
+              size: 12
+            }}
+            tablet={{
+              size: 6
+            }}
+            desktop={{
+              size: 5,
+              offset: 1
+            }}
+          >
+            <Section size="small">
+              <form
+                name={uid}
+                method="POST"
+                onSubmit={handleSubmit(onSubmit)}
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                data-netlify-recaptcha="true"
+              >
+                <ColumnGroup className="is-mobile is-multiline is-centered">
+                  <Column
+                    paddingless
+                    marginless
+                    mobile={{
+                      size: 12
                     }}
-                  />
-                  <Field>
-                    <Control>
-                      <S.Input
-                        required
-                        color={errors.name ? "danger" : ""}
-                        type="text"
-                        placeholder="Name *"
-                        name="name"
-                        ref={register({ required: true })}
-                      />
-                    </Control>
-                  </Field>
-                  <Field>
-                    <Control>
-                      <S.Input
-                        required
-                        color={errors.name ? "danger" : ""}
-                        type="text"
-                        placeholder="Business Name *"
-                        name="business_name"
-                        ref={register({ required: true })}
-                      />
-                    </Control>
-                  </Field>
-                  <Field>
-                    <Control>
-                      <S.Input
-                        required
-                        color={errors.name ? "danger" : ""}
-                        type="email"
-                        placeholder="Work Email Address *"
-                        name="work_email"
-                        ref={register({ required: true })}
-                      />
-                    </Control>
-                  </Field>
-                  <Field>
-                    <Control>
-                      <S.Input
-                        required
-                        color={errors.name ? "danger" : ""}
-                        type="text"
-                        placeholder="Phone Number *"
-                        name="phone_number"
-                        ref={register({ required: true })}
-                      />
-                    </Control>
-                  </Field>
-                  <Field>
-                    <Control>
-                      <S.Select fullwidth>
-                        <Select
-                          name="help"
-                          required
-                          ref={register({
-                            required: true
-                          })}
-                        >
-                          <option value="" defaultValue>
-                            How can we help?
-                          </option>
-                          <option value="New site build">New site build</option>
-                          <Select.Option value="Replatform">
-                            Replatform
-                          </Select.Option>
-                          <Select.Option value="Shopify site optimisation">
-                            Shopify site optimisation
-                          </Select.Option>
-                        </Select>
-                      </S.Select>
-                    </Control>
-                  </Field>
-                  <Field>
-                    <Control>
-                      <S.Select fullwidth>
-                        <Select
-                          name="best_call_time"
-                          required
-                          ref={register({
-                            required: true
-                          })}
-                        >
-                          <option value="" defaultValue>
-                            When’s the best time to call you?
-                          </option>
-                          <option value="Morning">Morning</option>
-                          <Select.Option value="Afternoon">
-                            Afternoon
-                          </Select.Option>
-                        </Select>
-                      </S.Select>
-                    </Control>
-                  </Field>
-                  <Field>
-                    <Control>
-                      <S.Recaptcha
-                        ref={recaptchaRef}
-                        sitekey={"6Ld94OUUAAAAAAm9H-JaPijn8vKF3y8xxTSzCXFL"}
-                        onChange={value => setRecaptcha(value)}
-                      />
-                    </Control>
-                  </Field>
-                  <Field>
-                    <Control style={{ textAlign: "right" }}>
-                      {recaptchaMessage !== "" && (
-                        <S.InlineNotification>
-                          {recaptchaMessage}
-                        </S.InlineNotification>
-                      )}
-                      <S.Button type="submit">
-                        Submit <LongRightArrow size="20" fill="#fff" />
-                      </S.Button>
-                    </Control>
-                  </Field>
-                </Column>
-              </ColumnGroup>
-            </form>
-          </Section>
-        </Column>
-        <Column
-          id="ppc-form-sections"
-          ref={formSectionsRef}
-          paddingless
-          mobile={{
-            size: 12
-          }}
-          tablet={{
-            size: 6
-          }}
-          desktop={{
-            size: 5
-          }}
-        >
-          {success ? (
-            <S.SuccessOverlay>
-              <S.SuccessOverlayIcon onClick={() => setSuccess(false)}>
-                <Close />
-              </S.SuccessOverlayIcon>
-              <Content>
-                <h3>Thank you for getting in touch,</h3>
-                <h4>we will get back to you soon!</h4>
-              </Content>
-            </S.SuccessOverlay>
-          ) : (
-            <S.Items>
-              {items.map((item, index) => {
-                const content = generateContent({
-                  preheading: item.content_preheading.html,
-                  title: item.content_title.html
-                });
-                const { url, internal } = generatePath(item.content_link);
-                const handleClick = (url, internal) => {
-                  if (internal) {
-                    navigate(url);
-                  } else {
-                    window.location.href = url;
-                  }
-                };
-                return (
-                  <S.Item
-                    key={index}
-                    onClick={() => handleClick(url, internal)}
+                    tablet={{
+                      size: 12
+                    }}
+                    desktop={{
+                      size: 10
+                    }}
                   >
-                    <S.Image>
-                      <BackgroundImage
-                        fluid={
-                          item.content_image.localFile.childImageSharp.fluid
-                        }
-                        backgroundColor="#000"
-                        style={{ height: "100%" }}
+                    <input type="hidden" name="form-name" value={uid} />
+                    <p hidden>
+                      <input
+                        name="bot-field"
+                        value={honeyPot}
+                        onChange={e => setHoneyPot(e.target.value)}
                       />
-                    </S.Image>
-                    <S.Content
+                    </p>
+                    <S.Title
                       dangerouslySetInnerHTML={{
                         __html: content
                       }}
                     />
-                  </S.Item>
-                );
-              })}
-            </S.Items>
-          )}
-        </Column>
-      </ColumnGroup>
-    </S.Container>
+                    <Field>
+                      <Control>
+                        <S.Input
+                          required
+                          color={errors.name ? "danger" : ""}
+                          type="text"
+                          placeholder="Name *"
+                          name="name"
+                          ref={register({ required: true })}
+                        />
+                      </Control>
+                    </Field>
+                    <Field>
+                      <Control>
+                        <S.Input
+                          required
+                          color={errors.name ? "danger" : ""}
+                          type="text"
+                          placeholder="Business Name *"
+                          name="business_name"
+                          ref={register({ required: true })}
+                        />
+                      </Control>
+                    </Field>
+                    <Field>
+                      <Control>
+                        <S.Input
+                          required
+                          color={errors.name ? "danger" : ""}
+                          type="email"
+                          placeholder="Work Email Address *"
+                          name="work_email"
+                          ref={register({ required: true })}
+                        />
+                      </Control>
+                    </Field>
+                    <Field>
+                      <Control>
+                        <S.Input
+                          required
+                          color={errors.name ? "danger" : ""}
+                          type="text"
+                          placeholder="Phone Number *"
+                          name="phone_number"
+                          ref={register({ required: true })}
+                        />
+                      </Control>
+                    </Field>
+                    <Field>
+                      <Control>
+                        <S.Select fullwidth>
+                          <Select
+                            name="help"
+                            required
+                            ref={register({
+                              required: true
+                            })}
+                          >
+                            <option value="" defaultValue>
+                              How can we help?
+                            </option>
+                            <option value="New site build">
+                              New site build
+                            </option>
+                            <Select.Option value="Replatform">
+                              Replatform
+                            </Select.Option>
+                            <Select.Option value="Shopify site optimisation">
+                              Shopify site optimisation
+                            </Select.Option>
+                          </Select>
+                        </S.Select>
+                      </Control>
+                    </Field>
+                    <Field>
+                      <Control>
+                        <S.Select fullwidth>
+                          <Select
+                            name="best_call_time"
+                            required
+                            ref={register({
+                              required: true
+                            })}
+                          >
+                            <option value="" defaultValue>
+                              When’s the best time to call you?
+                            </option>
+                            <option value="Morning">Morning</option>
+                            <Select.Option value="Afternoon">
+                              Afternoon
+                            </Select.Option>
+                          </Select>
+                        </S.Select>
+                      </Control>
+                    </Field>
+                    {primary.content_additional && (
+                      <Field>
+                        <Control>
+                          <S.Title
+                            dangerouslySetInnerHTML={{
+                              __html: primary.content_additional.html
+                            }}
+                          />
+                        </Control>
+                      </Field>
+                    )}
+                    <Field>
+                      <Control>
+                        <S.Recaptcha
+                          ref={recaptchaRef}
+                          sitekey={"6Ld94OUUAAAAAAm9H-JaPijn8vKF3y8xxTSzCXFL"}
+                          onChange={value => setRecaptcha(value)}
+                        />
+                      </Control>
+                    </Field>
+                    <Field>
+                      <Control style={{ textAlign: "right" }}>
+                        {recaptchaMessage !== "" && (
+                          <S.InlineNotification>
+                            {recaptchaMessage}
+                          </S.InlineNotification>
+                        )}
+                        <S.Button type="submit">
+                          Submit <LongRightArrow size="20" fill="#fff" />
+                        </S.Button>
+                      </Control>
+                    </Field>
+                  </Column>
+                </ColumnGroup>
+              </form>
+            </Section>
+          </Column>
+          <Column
+            id="ppc-form-sections"
+            ref={formSectionsRef}
+            paddingless
+            mobile={{
+              size: 12
+            }}
+            tablet={{
+              size: 6
+            }}
+            desktop={{
+              size: 5
+            }}
+          >
+            {success ? (
+              <S.SuccessOverlay>
+                <S.SuccessOverlayIcon onClick={() => setSuccess(false)}>
+                  <Close />
+                </S.SuccessOverlayIcon>
+                <Content>
+                  <h3>Thank you for getting in touch,</h3>
+                  <h4>we will get back to you soon!</h4>
+                </Content>
+              </S.SuccessOverlay>
+            ) : (
+              <S.Items>
+                {items.map((item, index) => {
+                  const content = generateContent({
+                    preheading: item.content_preheading.html,
+                    title: item.content_title.html
+                  });
+                  const { url, internal } = generatePath(item.content_link);
+                  const handleClick = (url, internal) => {
+                    if (internal) {
+                      navigate(url);
+                    } else {
+                      window.location.href = url;
+                    }
+                  };
+                  return (
+                    <S.Item
+                      key={index}
+                      onClick={() => handleClick(url, internal)}
+                    >
+                      <S.Image>
+                        <BackgroundImage
+                          fluid={
+                            item.content_image.localFile.childImageSharp.fluid
+                          }
+                          backgroundColor="#000"
+                          style={{ height: "100%" }}
+                        />
+                      </S.Image>
+                      <S.Content
+                        dangerouslySetInnerHTML={{
+                          __html: content
+                        }}
+                      />
+                    </S.Item>
+                  );
+                })}
+              </S.Items>
+            )}
+          </Column>
+        </ColumnGroup>
+      </S.Container>
+    </Fragment>
   );
 };
 

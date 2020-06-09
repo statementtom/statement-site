@@ -1,69 +1,30 @@
-import React from 'react';
-import { Section, Container, Column, Content } from 'rbx';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import Img from 'gatsby-image';
-import styled from '@emotion/styled';
+import React from "react";
+import { Container, Column } from "rbx";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import Img from "gatsby-image";
 
-const CustomContent = styled(Content)`
-  color: #000000;
-  font-size: 18px;
-  font-weight: 300;
-  h1,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: 30px;
-    line-height: 60px;
-    letter-spacing: -0.27px;
-    font-weight: 500;
-    margin: 0 0 20px 0;
-    strong {
-      color: #ce0527;
-      font-weight: inherit;
-    }
-  }
-  h2 {
-    margin: 0 0 20px 0;
-    strong {
-      color: #ce0527;
-      font-weight: inherit;
-    }
-  }
-`;
+import * as S from "./styles";
 
-const ImageWrapper = styled.div`
-  max-width: ${props => (props.fullWidth ? '100%' : '450px')};
-  margin: 0 auto;
-`;
-
-const CustomSection = styled(Section)`
-  margin-bottom: ${props => (props.overlap ? '-200px;' : '0;')};
-  @media screen and (max-width: 768px) {
-    margin-bottom: 0;
-  }
-`;
-
-const TextImage = ({ primary }) => (
-  <CustomSection size="medium" overlap={primary.alternate_version === 'Yes'}>
-    <Container>
-      <ColumnGroup
-        className={
-          primary.alternate_layout === 'No'
-            ? 'is-mobile is-multiline is-vcentered'
-            : 'is-mobile is-multiline is-vcentered is-reversed-mobile'
-        }
-      >
-        {primary.alternate_layout === 'No' ? (
-          <>
+const TextImage = ({ primary }) => {
+  if (primary.alternate_layout === "No") {
+    return (
+      <S.Section size="medium" overlap={primary.alternate_version === "Yes"}>
+        <Container>
+          <ColumnGroup
+            className={
+              primary.alternate_layout === "No"
+                ? "is-mobile is-multiline is-vcentered"
+                : "is-mobile is-multiline is-vcentered is-reversed-mobile"
+            }
+          >
             <Column
               mobile={{ size: 12 }}
               tablet={{ size: 6 }}
               desktop={{ size: 6 }}
             >
-              <CustomContent
+              <S.Content
                 dangerouslySetInnerHTML={{
-                  __html: primary.content.html,
+                  __html: primary.content.html
                 }}
               />
             </Column>
@@ -72,44 +33,55 @@ const TextImage = ({ primary }) => (
               tablet={{ size: 6 }}
               desktop={{ size: 6 }}
             >
-              <ImageWrapper>
+              <S.ImageContainer>
                 <Img
                   fluid={primary.image.localFile.childImageSharp.fluid}
                   alt={primary.image.alt}
                 />
-              </ImageWrapper>
+              </S.ImageContainer>
             </Column>
-          </>
-        ) : (
-          <>
-            <Column
-              mobile={{ size: 12 }}
-              tablet={{ size: 6 }}
-              desktop={{ size: 6 }}
-            >
-              <ImageWrapper>
-                <Img
-                  fluid={primary.image.localFile.childImageSharp.fluid}
-                  alt={primary.image.alt}
-                />
-              </ImageWrapper>
-            </Column>
-            <Column
-              mobile={{ size: 12 }}
-              tablet={{ size: 6 }}
-              desktop={{ size: 6 }}
-            >
-              <CustomContent
-                dangerouslySetInnerHTML={{
-                  __html: primary.content.html,
-                }}
+          </ColumnGroup>
+        </Container>
+      </S.Section>
+    );
+  }
+  return (
+    <S.Section size="medium" overlap={primary.alternate_version === "Yes"}>
+      <Container>
+        <ColumnGroup
+          className={
+            primary.alternate_layout === "No"
+              ? "is-mobile is-multiline is-vcentered"
+              : "is-mobile is-multiline is-vcentered is-reversed-mobile"
+          }
+        >
+          <Column
+            mobile={{ size: 12 }}
+            tablet={{ size: 6 }}
+            desktop={{ size: 6 }}
+          >
+            <S.ImageContainer>
+              <Img
+                fluid={primary.image.localFile.childImageSharp.fluid}
+                alt={primary.image.alt}
               />
-            </Column>
-          </>
-        )}
-      </ColumnGroup>
-    </Container>
-  </CustomSection>
-);
+            </S.ImageContainer>
+          </Column>
+          <Column
+            mobile={{ size: 12 }}
+            tablet={{ size: 6 }}
+            desktop={{ size: 6 }}
+          >
+            <S.Content
+              dangerouslySetInnerHTML={{
+                __html: primary.content.html
+              }}
+            />
+          </Column>
+        </ColumnGroup>
+      </Container>
+    </S.Section>
+  );
+};
 
 export default TextImage;

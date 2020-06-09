@@ -1,10 +1,10 @@
-import React from 'react';
-import { Section, Container, Column, Content } from 'rbx';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import styled from '@emotion/styled';
-import posed from 'react-pose';
-import { useInView } from 'react-intersection-observer';
-import { useMedia } from 'react-use';
+import React from "react";
+import { Section, Container, Column, Content } from "rbx";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import styled from "@emotion/styled";
+import posed from "react-pose";
+import { useInView } from "react-intersection-observer";
+import { useMedia } from "react-use";
 
 const CustomContent = styled(Content)`
   text-align: center;
@@ -41,95 +41,97 @@ const CustomSection = styled(Section)`
 const PosedColumn = posed(Column)({
   enter: {
     opacity: 1,
-    transform: 'translateY(0%)',
+    transform: "translateY(0%)",
     transition: {
-      type: 'spring',
-      stiffness: 100,
-    },
+      type: "spring",
+      stiffness: 100
+    }
   },
   exit: {
     opacity: 0,
-    transform: 'translateY(-100%)',
+    transform: "translateY(-100%)",
     transition: {
-      type: 'spring',
-      stiffness: 100,
-    },
-  },
+      type: "spring",
+      stiffness: 100
+    }
+  }
 });
 
 const PosedColumnGroup = posed(ColumnGroup)({
   enter: {
     opacity: 1,
-    staggerChildren: 50,
+    staggerChildren: 50
   },
   exit: {
     opacity: 1,
-    staggerChildren: 50,
-  },
+    staggerChildren: 50
+  }
 });
 
 const Stats = ({ items, size, background }) => {
   const [desktopRef, desktopInView] = useInView({
-    triggerOnce: true,
+    triggerOnce: true
   });
   const [mobileRef, mobileInView] = useInView({
-    triggerOnce: true,
+    triggerOnce: true
   });
-  const mobile = useMedia('(max-width: 768px)');
+  const mobile = useMedia("(max-width: 768px)");
   return (
     <>
-      {items.length > 0 && items[0].figure.html != '<h1> </h1>' && items[0].figure.html != '<p> </p>' && (
-        <CustomSection size={size} background={background}>
-          <Container>
-            {!mobile && (
-              <PosedColumnGroup
-                pose={desktopInView ? 'enter' : 'exit'}
-                className="is-mobile is-multiline"
-                ref={desktopRef}
-                style={{ minHeight: '145px' }}
-              >
-                {desktopInView &&
-                  items.map((item, index) => (
-                    <PosedColumn
-                      initialPose="exit"
-                      pose={desktopInView ? 'enter' : 'exit'}
-                      key={index}
-                    >
-                      <CustomContent
-                        dangerouslySetInnerHTML={{
-                          __html: `${item.figure.html} ${item.content.html}`,
-                        }}
-                      />
-                    </PosedColumn>
-                  ))}
-              </PosedColumnGroup>
-            )}
-            {mobile && (
-              <PosedColumnGroup
-                pose={mobileInView ? 'enter' : 'exit'}
-                className="is-mobile is-multiline"
-                ref={mobileRef}
-                style={{ minHeight: '145px' }}
-              >
-                {mobileInView &&
-                  items.map((item, index) => (
-                    <PosedColumn
-                      initialPose="exit"
-                      pose={mobileInView ? 'enter' : 'exit'}
-                      key={index}
-                    >
-                      <CustomContent
-                        dangerouslySetInnerHTML={{
-                          __html: `${item.figure.html} ${item.content.html}`,
-                        }}
-                      />
-                    </PosedColumn>
-                  ))}
-              </PosedColumnGroup>
-            )}
-          </Container>
-        </CustomSection>
-      )}
+      {items.length > 0 &&
+        items[0].figure.html != "<h1> </h1>" &&
+        items[0].figure.html != "<p> </p>" && (
+          <CustomSection size={size} background={background}>
+            <Container>
+              {!mobile && (
+                <PosedColumnGroup
+                  pose={desktopInView ? "enter" : "exit"}
+                  className="is-mobile is-multiline"
+                  ref={desktopRef}
+                  style={{ minHeight: "145px" }}
+                >
+                  {desktopInView &&
+                    items.map((item, index) => (
+                      <PosedColumn
+                        initialPose="exit"
+                        pose={desktopInView ? "enter" : "exit"}
+                        key={index}
+                      >
+                        <CustomContent
+                          dangerouslySetInnerHTML={{
+                            __html: `${item.figure.html} ${item.content.html}`
+                          }}
+                        />
+                      </PosedColumn>
+                    ))}
+                </PosedColumnGroup>
+              )}
+              {mobile && (
+                <PosedColumnGroup
+                  pose={mobileInView ? "enter" : "exit"}
+                  className="is-mobile is-multiline"
+                  ref={mobileRef}
+                  style={{ minHeight: "145px" }}
+                >
+                  {mobileInView &&
+                    items.map((item, index) => (
+                      <PosedColumn
+                        initialPose="exit"
+                        pose={mobileInView ? "enter" : "exit"}
+                        key={index}
+                      >
+                        <CustomContent
+                          dangerouslySetInnerHTML={{
+                            __html: `${item.figure.html} ${item.content.html}`
+                          }}
+                        />
+                      </PosedColumn>
+                    ))}
+                </PosedColumnGroup>
+              )}
+            </Container>
+          </CustomSection>
+        )}
     </>
   );
 };

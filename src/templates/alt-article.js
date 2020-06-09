@@ -1,19 +1,20 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
-import { graphql } from 'gatsby';
+import React from "react";
+import Helmet from "react-helmet";
+import PropTypes from "prop-types";
+import Img from "gatsby-image";
+import { graphql } from "gatsby";
 
-import styled from '@emotion/styled';
-import Layout from '../containers/Layout';
-import ArticleDetails from '../components/ui/ArticleDetails';
-import Content from '../components/ui/Content';
-import ServicesList from '../components/ui/ServicesList';
+import styled from "@emotion/styled";
+import Layout from "../containers/Layout";
+import ArticleDetails from "../components/ui/ArticleDetails";
+import Content from "../components/ui/Content";
+import ServicesList from "../components/ui/ServicesList";
 
-import { SiteFragment } from '../fragments/global/site';
-import { BlogFallbackBannerImageFragment } from '../fragments/pages/blog';
-import { PrismicAltArticleFragment } from '../fragments/templates/alt-article';
-import { PrismicPageBodyServicesListFragment } from '../components/ui/ServicesList/fragment';
+import { SiteFragment } from "../fragments/global/site";
+import { BlogFallbackBannerImageFragment } from "../fragments/pages/blog";
+import { PrismicAltArticleFragment } from "../fragments/templates/alt-article";
+import { PrismicPageBodyServicesListFragment } from "../components/ui/ServicesList/fragment";
+import PPCForm from "../components/ui/Forms/ppc";
 
 export const pageQuery = graphql`
   query AltArticle($title: String) {
@@ -37,12 +38,56 @@ export const pageQuery = graphql`
         }
       }
     }
+    prismicArticleNewsletter {
+      data {
+        body {
+          ... on PrismicArticleNewsletterBodyForm {
+            id
+            slice_type
+            primary {
+              content_top_padding
+              content_title {
+                html
+              }
+              content_copy {
+                html
+              }
+              content_additional {
+                html
+              }
+            }
+            items {
+              content_preheading {
+                html
+              }
+              content_title {
+                html
+              }
+              content_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 500, maxHeight: 500, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+                alt
+              }
+              content_link {
+                link_type
+                url
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
 const BannerItem = styled.div`
   position: relative;
-  height: 100vh;
+  height: 65vh;
   .gatsby-image-wrapper {
     height: 100%;
   }
@@ -61,24 +106,25 @@ const BannerItem = styled.div`
 
 const AltArticle = ({
   data: {
+    prismicArticleNewsletter: { data: newsletter },
     markdownRemark: { frontmatter, html },
     site: { siteMetadata: meta },
     allFile: { edges: randomImages },
-    prismicPage,
-  },
+    prismicPage
+  }
 }) => {
   const randomNum = Math.floor(Math.random() * (14 - 0 + 1)) + 0;
   const randomImage = randomImages[randomNum];
   const details = {
     date: frontmatter.date,
     pageTitle: `<h1>${frontmatter.title}</h1>`,
-    author: frontmatter.author,
+    author: frontmatter.author
   };
   return (
     <Layout>
       <Helmet
         htmlAttributes={{
-          lang: `en`,
+          lang: `en`
         }}
         title={
           frontmatter.meta[0].meta_title
@@ -90,11 +136,11 @@ const AltArticle = ({
             name: `description`,
             content: frontmatter.meta[0].meta_description
               ? frontmatter.meta[0].meta_description
-              : meta.description,
-          },
+              : meta.description
+          }
         ]}
       >
-        {frontmatter.tags && !frontmatter.tags.includes('replatforming') && (
+        {frontmatter.tags && !frontmatter.tags.includes("replatforming") && (
           <script
             defer
             src="https://statement346.activehosted.com/f/embed.php?id=7"
@@ -126,31 +172,25 @@ const AltArticle = ({
         />
         <meta
           property="og:url"
-          content={typeof window !== 'undefined' ? window.location.href : null}
+          content={typeof window !== "undefined" ? window.location.href : null}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:site_name" content={meta.title} />
         <meta name="twitter:image:alt" content={meta.description} />
         <link
           rel="canonical"
-          href={typeof window !== 'undefined' ? window.location.href : null}
+          href={typeof window !== "undefined" ? window.location.href : null}
         />
       </Helmet>
       <BannerItem>
         <Img fluid={randomImage.node.childImageSharp.fluid} />
       </BannerItem>
       <ArticleDetails details={details} visible />
-      <Content
-        primary={{ content: { html } }}
-        event
-        {...(frontmatter.tags && !frontmatter.tags.includes('replatforming')
-          ? { blog: true }
-          : {})}
-      />
+      <Content primary={{ content: { html } }} event />
       {frontmatter.tags &&
-        frontmatter.tags.includes('replatforming') &&
+        frontmatter.tags.includes("replatforming") &&
         prismicPage.data.body.map((section, index) => {
-          if (section.slice_type === 'services_list') {
+          if (section.slice_type === "services_list") {
             return (
               <ServicesList
                 key={`${section.id}-${index}`}
@@ -161,6 +201,19 @@ const AltArticle = ({
           }
           return null;
         })}
+      {newsletter.body.map((section, index) => {
+        if (section.slice_type === "form") {
+          return (
+            <PPCForm
+              key={`${section.id}-${index}`}
+              uid="article"
+              primary={section.primary}
+              items={section.items}
+            />
+          );
+        }
+        return null;
+      })}
     </Layout>
   );
 };
@@ -169,8 +222,8 @@ AltArticle.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object.isRequired,
     site: PropTypes.object.isRequired,
-    allFile: PropTypes.object.isRequired,
-  }),
+    allFile: PropTypes.object.isRequired
+  })
 };
 
 export default AltArticle;

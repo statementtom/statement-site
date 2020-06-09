@@ -256,6 +256,13 @@ export const Item = styled.div`
 `;
 
 export const Title = styled(BContent)`
+  p,
+  li,
+  a,
+  button {
+    font-weight: 300;
+  }
+
   h1,
   h2,
   h3,
@@ -291,41 +298,6 @@ export const Content = styled(BContent)`
   padding: 1rem 4rem;
   @media screen and (max-width: 768px) {
     padding: 1rem;
-  }
-`;
-
-export const AnchorButton = styled(AnchorLink)`
-  text-align: center;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 30px;
-  background-color: #ce0527;
-  transition: all 0.3s ease;
-  min-width: 300px;
-  border: 0;
-  cursor: pointer;
-  text-transform: lowercase;
-  @media screen and (max-width: 768px) {
-    min-width: 100%;
-  }
-  svg {
-    display: block;
-    margin-left: 10px;
-    margin-top: 2px;
-    transition: all 0.3s ease;
-    path {
-      transition: all 0.3s ease;
-    }
-  }
-  &:hover {
-    color: #000;
-    background-color: #fff;
-    svg,
-    svg path {
-      fill: #ce0527;
-    }
   }
 `;
 

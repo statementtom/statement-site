@@ -8,7 +8,6 @@ import { Calendar, Clock, GeoPin } from '../Icons';
 
 const CustomContent = styled(Content)`
   padding: 80px;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;

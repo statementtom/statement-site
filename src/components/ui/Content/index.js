@@ -1,8 +1,8 @@
-import React from 'react';
-import { Section, Container, Column, Content as BulmaContent } from 'rbx';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import styled from '@emotion/styled';
-import { LongRightArrow, Twitter, Facebook, Linkedin } from '../Icons';
+import React from "react";
+import { Section, Container, Column, Content as BulmaContent } from "rbx";
+import { ColumnGroup } from "rbx/grid/columns/column-group";
+import styled from "@emotion/styled";
+import { LongRightArrow, Twitter, Facebook, Linkedin } from "../Icons";
 
 const StyledContent = styled(BulmaContent)`
   h1,
@@ -38,7 +38,7 @@ const StyledContent = styled(BulmaContent)`
   li {
     position: relative;
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 16px;
       left: -20px;
@@ -144,16 +144,16 @@ const Marketing = styled(BulmaContent)`
       font-weight: 300 !important;
       margin-top: 15px !important;
     }
-    input[type='text'] {
+    input[type="text"] {
       font-size: 18px !important;
     }
   }
 `;
 
-const Content = ({ primary, article, event, marketing, blog, key }) => (
+const Content = ({ primary, article, event, marketing, key }) => (
   <>
     {primary.content.html && (
-      <CustomSection size={event ? '' : 'medium'}>
+      <CustomSection>
         <Container>
           <ColumnGroup className="is-mobile is-multiline is-centered">
             <Column
@@ -163,7 +163,7 @@ const Content = ({ primary, article, event, marketing, blog, key }) => (
             >
               <StyledContent
                 dangerouslySetInnerHTML={{
-                  __html: primary.content.html,
+                  __html: primary.content.html
                 }}
               />
               <p>{key}</p>
@@ -187,7 +187,7 @@ const Content = ({ primary, article, event, marketing, blog, key }) => (
                   <li>
                     <a
                       href={
-                        typeof window !== 'undefined'
+                        typeof window !== "undefined"
                           ? `http://twitter.com/share?url=${window.location.href}`
                           : null
                       }
@@ -200,7 +200,7 @@ const Content = ({ primary, article, event, marketing, blog, key }) => (
                   <li>
                     <a
                       href={
-                        typeof window !== 'undefined'
+                        typeof window !== "undefined"
                           ? `http://www.facebook.com/sharer.php?u=${window.location.href}`
                           : null
                       }
@@ -213,7 +213,7 @@ const Content = ({ primary, article, event, marketing, blog, key }) => (
                   <li>
                     <a
                       href={
-                        typeof window !== 'undefined'
+                        typeof window !== "undefined"
                           ? `https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}`
                           : null
                       }
@@ -231,12 +231,6 @@ const Content = ({ primary, article, event, marketing, blog, key }) => (
             <Marketing>
               <h3>Register your interest for upcoming eCommerce events</h3>
               <div className="_form_20" />
-            </Marketing>
-          )}
-          {blog && (
-            <Marketing>
-              <h3>Subscribe to our eCommerce newsletter</h3>
-              <div className="_form_7" />
             </Marketing>
           )}
         </Container>

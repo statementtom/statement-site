@@ -1,19 +1,20 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import React from "react";
+import Helmet from "react-helmet";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
 
-import Layout from '../containers/Layout';
-import Banner from '../components/ui/Banner';
-import ArticleDetails from '../components/ui/ArticleDetails';
-import Content from '../components/ui/Content';
+import Layout from "../containers/Layout";
+import Banner from "../components/ui/Banner";
+import ArticleDetails from "../components/ui/ArticleDetails";
+import Content from "../components/ui/Content";
 // import ArticleRelated from '../components/ui/ArticleRelated';
-import { SiteFragment } from '../fragments/global/site';
-import { PrismicArticleFragment } from '../fragments/templates/article';
-import { PrismicArticleBodyBannerFragment } from '../components/ui/Banner/fragment';
-import { PrismicArticleBodyArticleDetailsFragament } from '../components/ui/ArticleDetails/fragment';
-import { PrismicArticleBodyContentFragment } from '../components/ui/Content/fragment';
-import { PrismicArticleBodyRelatedArticlesFragment } from '../components/ui/ArticleRelated/fragment';
+import { SiteFragment } from "../fragments/global/site";
+import { PrismicArticleFragment } from "../fragments/templates/article";
+import { PrismicArticleBodyBannerFragment } from "../components/ui/Banner/fragment";
+import { PrismicArticleBodyArticleDetailsFragament } from "../components/ui/ArticleDetails/fragment";
+import { PrismicArticleBodyContentFragment } from "../components/ui/Content/fragment";
+import { PrismicArticleBodyRelatedArticlesFragment } from "../components/ui/ArticleRelated/fragment";
+import PPCForm from "../components/ui/Forms/ppc";
 
 export const pageQuery = graphql`
   query Article($uid: String) {
@@ -39,28 +40,74 @@ export const pageQuery = graphql`
         }
       }
     }
+    prismicArticleNewsletter {
+      data {
+        body {
+          ... on PrismicArticleNewsletterBodyForm {
+            id
+            slice_type
+            primary {
+              content_top_padding
+              content_title {
+                html
+              }
+              content_copy {
+                html
+              }
+              content_additional {
+                html
+              }
+            }
+            items {
+              content_preheading {
+                html
+              }
+              content_title {
+                html
+              }
+              content_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 500, maxHeight: 500, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+                alt
+              }
+              content_link {
+                link_type
+                url
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
 const Article = ({
   data: {
+    prismicArticleNewsletter: { data: newsletter },
     prismicArticle: { data },
-    site: { siteMetadata: meta },
-  },
+    site: { siteMetadata: meta }
+  }
 }) => {
   const details = {
     date: data.date,
     pageTitle: data.page_title.html,
-    author: data.author.text,
+    author: data.author.text
   };
   const socialCardImage = data.body
-    .find(section => section.slice_type === 'banner')
-    .primary.image.url.split('?')[0];
+    .find(section => section.slice_type === "banner")
+    .primary.image.url.split("?")[0];
+
   return (
     <Layout>
       <Helmet
         htmlAttributes={{
-          lang: `en`,
+          lang: `en`
         }}
         title={data.title && data.title.text ? data.title.text : meta.title}
         meta={[
@@ -69,8 +116,8 @@ const Article = ({
             content:
               data.description && data.description.text
                 ? data.description.text
-                : meta.description,
-          },
+                : meta.description
+          }
         ]}
       >
         <script
@@ -93,18 +140,18 @@ const Article = ({
         <meta property="og:image:secure_url" content={socialCardImage} />
         <meta
           property="og:url"
-          content={typeof window !== 'undefined' ? window.location.href : null}
+          content={typeof window !== "undefined" ? window.location.href : null}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:site_name" content={meta.title} />
         <meta name="twitter:image:alt" content={meta.description} />
         <link
           rel="canonical"
-          href={typeof window !== 'undefined' ? window.location.href : null}
+          href={typeof window !== "undefined" ? window.location.href : null}
         />
       </Helmet>
       {data.body.map((section, index) => {
-        if (section.slice_type === 'banner') {
+        if (section.slice_type === "banner") {
           return (
             <Banner
               key={`${section.id}-${index}`}
@@ -113,7 +160,7 @@ const Article = ({
             />
           );
         }
-        if (section.slice_type === 'article_details') {
+        if (section.slice_type === "article_details") {
           return (
             <ArticleDetails
               key={`${section.id}-${index}`}
@@ -122,13 +169,12 @@ const Article = ({
             />
           );
         }
-        if (section.slice_type === 'content') {
+        if (section.slice_type === "content") {
           return (
             <Content
               key={`${section.id}-${index}`}
               primary={section.primary}
               article
-              blog
             />
           );
         }
@@ -144,6 +190,19 @@ const Article = ({
         // }
         return null;
       })}
+      {newsletter.body.map((section, index) => {
+        if (section.slice_type === "form") {
+          return (
+            <PPCForm
+              key={`${section.id}-${index}`}
+              uid="article"
+              primary={section.primary}
+              items={section.items}
+            />
+          );
+        }
+        return null;
+      })}
     </Layout>
   );
 };
@@ -151,8 +210,8 @@ const Article = ({
 Article.propTypes = {
   data: PropTypes.shape({
     prismicArticle: PropTypes.object.isRequired,
-    site: PropTypes.object.isRequired,
-  }),
+    site: PropTypes.object.isRequired
+  })
 };
 
 export default Article;

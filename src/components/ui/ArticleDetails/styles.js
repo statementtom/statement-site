@@ -4,7 +4,6 @@ import { ColumnGroup as BColumnGroup } from "rbx/grid/columns/column-group";
 
 export const Content = styled(BContent)`
   padding: 80px;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
