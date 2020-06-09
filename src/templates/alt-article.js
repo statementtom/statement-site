@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 import Img from "gatsby-image";
 import { graphql } from "gatsby";
 
-import styled from "@emotion/styled";
 import Layout from "../containers/Layout";
 import ArticleDetails from "../components/ui/ArticleDetails";
 import Content from "../components/ui/Content";
 import ServicesList from "../components/ui/ServicesList";
+import Newsletter from "../components/ui/Forms/newsletter";
+import { Item } from "../components/templates/alt-article/styles";
 
 import { SiteFragment } from "../fragments/global/site";
 import { BlogFallbackBannerImageFragment } from "../fragments/pages/blog";
 import { PrismicAltArticleFragment } from "../fragments/templates/alt-article";
 import { PrismicPageBodyServicesListFragment } from "../components/ui/ServicesList/fragment";
-import PPCForm from "../components/ui/Forms/ppc";
 
 export const pageQuery = graphql`
   query AltArticle($title: String) {
@@ -74,31 +74,21 @@ export const pageQuery = graphql`
                 alt
               }
               content_link {
+                type
                 link_type
                 url
+                uid
+                document {
+                  ... on PrismicArticle {
+                    data {
+                      date(formatString: "YYYY/MM")
+                    }
+                  }
+                }
               }
             }
           }
         }
-      }
-    }
-  }
-`;
-
-const BannerItem = styled.div`
-  position: relative;
-  height: 65vh;
-  .gatsby-image-wrapper {
-    height: 100%;
-  }
-  @media screen and (max-width: 768px) {
-    height: auto;
-    min-height: 350px;
-    > .gatsby-image-wrapper {
-      height: auto;
-      min-height: inherit;
-      > div {
-        min-height: inherit;
       }
     }
   }
@@ -140,12 +130,6 @@ const AltArticle = ({
           }
         ]}
       >
-        {frontmatter.tags && !frontmatter.tags.includes("replatforming") && (
-          <script
-            defer
-            src="https://statement346.activehosted.com/f/embed.php?id=7"
-          />
-        )}
         <meta
           property="og:title"
           content={
@@ -182,9 +166,9 @@ const AltArticle = ({
           href={typeof window !== "undefined" ? window.location.href : null}
         />
       </Helmet>
-      <BannerItem>
+      <Item>
         <Img fluid={randomImage.node.childImageSharp.fluid} />
-      </BannerItem>
+      </Item>
       <ArticleDetails details={details} visible />
       <Content primary={{ content: { html } }} event />
       {frontmatter.tags &&
@@ -204,9 +188,9 @@ const AltArticle = ({
       {newsletter.body.map((section, index) => {
         if (section.slice_type === "form") {
           return (
-            <PPCForm
+            <Newsletter
               key={`${section.id}-${index}`}
-              uid="article"
+              uid="newsletter"
               primary={section.primary}
               items={section.items}
             />

@@ -54,6 +54,7 @@ export const Content = styled(BContent)`
   justify-content: center;
   flex-direction: column;
   height: 100%;
+
   * {
     color: #fff;
   }
@@ -67,7 +68,7 @@ export const Content = styled(BContent)`
     font-size: 50px;
     line-height: 62px;
     letter-spacing: -0.43px;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     font-weight: 500;
     @media screen and (max-width: 768px) {
       font-size: 40px;
@@ -80,6 +81,9 @@ export const Content = styled(BContent)`
   }
   p {
     font-weight: 300;
+    &:not(last-child) {
+      margin-bottom: 0 !important;
+    }
   }
   a {
     color: #fff;

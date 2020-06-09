@@ -178,7 +178,7 @@ const Home = ({
       {data.body.map((section, index) => {
         if (section.slice_type === "slider") {
           return (
-            <Slider key={`${section.id}-${index}`} slides={section.items} />
+            <Slider key={`${section.id}-${index}`} items={section.items} />
           );
         }
         if (section.slice_type === "banner") {

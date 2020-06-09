@@ -261,6 +261,8 @@ export const Title = styled(BContent)`
   a,
   button {
     font-weight: 300;
+    line-height: ${({ small = false }) => (small ? "20px" : "24px")};
+    font-size: ${({ small = false }) => (small ? "14px" : "18px")};
   }
 
   h1,

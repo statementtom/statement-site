@@ -7,14 +7,16 @@ import Layout from "../containers/Layout";
 import Banner from "../components/ui/Banner";
 import ArticleDetails from "../components/ui/ArticleDetails";
 import Content from "../components/ui/Content";
+import PPCForm from "../components/ui/Forms/ppc";
 // import ArticleRelated from '../components/ui/ArticleRelated';
+
 import { SiteFragment } from "../fragments/global/site";
 import { PrismicArticleFragment } from "../fragments/templates/article";
 import { PrismicArticleBodyBannerFragment } from "../components/ui/Banner/fragment";
 import { PrismicArticleBodyArticleDetailsFragament } from "../components/ui/ArticleDetails/fragment";
 import { PrismicArticleBodyContentFragment } from "../components/ui/Content/fragment";
 import { PrismicArticleBodyRelatedArticlesFragment } from "../components/ui/ArticleRelated/fragment";
-import PPCForm from "../components/ui/Forms/ppc";
+import Newsletter from "../components/ui/Forms/newsletter";
 
 export const pageQuery = graphql`
   query Article($uid: String) {
@@ -76,8 +78,17 @@ export const pageQuery = graphql`
                 alt
               }
               content_link {
+                type
                 link_type
                 url
+                uid
+                document {
+                  ... on PrismicArticle {
+                    data {
+                      date(formatString: "YYYY/MM")
+                    }
+                  }
+                }
               }
             }
           }
@@ -120,10 +131,6 @@ const Article = ({
           }
         ]}
       >
-        <script
-          defer
-          src="https://statement346.activehosted.com/f/embed.php?id=7"
-        />
         <meta
           property="og:title"
           content={data.title && data.title.text ? data.title.text : meta.title}
@@ -193,9 +200,9 @@ const Article = ({
       {newsletter.body.map((section, index) => {
         if (section.slice_type === "form") {
           return (
-            <PPCForm
+            <Newsletter
               key={`${section.id}-${index}`}
-              uid="article"
+              uid="newsletter"
               primary={section.primary}
               items={section.items}
             />

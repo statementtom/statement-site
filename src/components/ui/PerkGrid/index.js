@@ -9,7 +9,6 @@ import * as Animated from "./animations";
 import getPerkIcon from "../../../util/content/getPerkIcon";
 
 const PerkGrid = ({ primary, items }) => {
-  console.log(items);
   const content = generateContent({
     title: primary.content_title.html
   });

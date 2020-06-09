@@ -1,140 +1,31 @@
-import React, { useRef } from 'react';
-import { ColumnGroup } from 'rbx/grid/columns/column-group';
-import { Column, Content, Section } from 'rbx';
-import styled from '@emotion/styled';
-import Slider from 'react-slick';
-import { useMedia } from 'react-use';
-import Img from 'gatsby-image';
-import { AngleLeftArrow, AngleRightArrow, Speech } from '../Icons';
+import React, { useRef } from "react";
+import { Column } from "rbx";
+import { useMedia } from "react-use";
+import Img from "gatsby-image";
 
-const TestimonialText = styled(Content)`
-  background-color: #f5f5f5;
-  @media screen and (max-width: 1023px) {
-    padding: 10px 30px 30px 30px;
-  }
-  p {
-    color: #000000;
-    font-weight: 300;
-    letter-spacing: -0.19px;
-    margin: 0;
-  }
-  span {
-    color: #000000;
-    font-size: 16px;
-    margin: 30px 0 0 0;
-    @media screen and (max-width: 1215px) {
-      margin: 30px 0 60px 0;
-    }
-  }
-  img {
-    margin-top: 30px;
-  }
-`;
+import { AngleLeftArrow, AngleRightArrow, Speech } from "../Icons";
+import Carousel from "../Carousel";
 
-const CustomColumnGroup = styled(ColumnGroup)`
-  position: relative;
-  margin-bottom: 6rem !important;
-  @media screen and (min-width: 1408px) {
-    margin-bottom: 9rem !important;
-  }
-  @media screen and (max-width: 768px) {
-    margin-bottom: 0 !important;
-  }
-`;
+import { SETTINGS } from "./constants";
 
-const CustomColumn = styled(Column)`
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  padding: 0;
-  overflow: hidden;
-  margin-top: 120px;
-  z-index: -1;
-  @media screen and (max-width: 768px) {
-    margin-top: 0;
-  }
-`;
-
-const SliderButtons = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  @media screen and (max-width: 1215px) {
-    right: 0;
-  }
-  @media screen and (max-width: 768px) {
-    position: static;
-    justify-content: flex-end;
-  }
-  .arrow {
-    cursor: pointer;
-    padding: 20px 30px;
-    background-color: #fff;
-    @media screen and (max-width: 768px) {
-      padding: 15px 20px;
-    }
-  }
-`;
-
-const SlideGroup = styled(ColumnGroup)`
-  height: 100%;
-  min-height: 500px;
-  position: relative;
-  @media screen and (max-width: 1023px) {
-    min-height: 100%;
-    > .column {
-      &:first-of-type {
-        padding: 0;
-      }
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .mobile-image-wrapper {
-      max-height: 350px;
-    }
-  }
-`;
-
-const CustomSection = styled(Section)`
-  padding: 3rem;
-  @media screen and (max-width: 1216px) {
-    padding: 3rem 1.5rem;
-  }
-`;
-
-const SpeechWrapper = styled.div`
-  @media screen and (max-width: 1215px) {
-    padding: 30px 30px 0 30px;
-  }
-`;
+import * as S from "./styles";
+import Item from "./components/Item";
 
 const TestimonialSlider = ({ items, primary }) => {
-  const mobile = useMedia('(max-width: 768px)');
-  const sliderTextRef = useRef(null);
-  const textSliderSettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesTowShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    fade: true,
-    adaptiveHeight: true,
-  };
+  const mobile = useMedia("(max-width: 768px)");
+  const sliderRef = useRef(null);
   return (
-    <CustomSection>
-      <CustomColumnGroup className="is-mobile is-multiline">
+    <S.Section>
+      <S.ColumnGroup className="is-mobile is-multiline">
         <Column
           mobile={{ size: 12 }}
           tablet={{ size: 12 }}
           desktop={{ size: 6 }}
           widescreen={{ size: 7 }}
-          style={{ backgroundColor: '#F5F5F5' }}
+          style={{ backgroundColor: "#F5F5F5" }}
           paddingless
         >
-          <SlideGroup className="is-mobile is-multiline is-centered is-vcentered">
+          <S.SlideGroup className="is-mobile is-multiline is-centered is-vcentered">
             {mobile && (
               <Column
                 mobile={{ size: 12 }}
@@ -154,50 +45,38 @@ const TestimonialSlider = ({ items, primary }) => {
               desktop={{ size: 8 }}
               widescreen={{ size: 8 }}
             >
-              <Slider ref={sliderTextRef} {...textSliderSettings}>
+              <Carousel ref={sliderRef} settings={SETTINGS}>
                 {items.map((item, index) => (
-                    <div key={index}>
-                      <SpeechWrapper>
-                        <Speech height={36} />
-                      </SpeechWrapper>
-
-                      <TestimonialText>
-                        <p>{item.content.text}</p>
-                        <span>{item.person.text}</span>
-                        {item.image && item.image.url && (
-                          <img src={item.image.url} alt={item.image.alt} />
-                        )}
-                      </TestimonialText>
-                    </div>
-                  ))}
-              </Slider>
-              <SliderButtons>
+                  <Item item={item} key={index} />
+                ))}
+              </Carousel>
+              <S.Buttons>
                 <div
                   className="arrow"
-                  onClick={() => sliderTextRef.current.slickPrev()}
+                  onClick={() => sliderRef.current.slickPrev()}
                 >
                   <AngleLeftArrow height="30" />
                 </div>
                 <div
                   className="arrow"
-                  onClick={() => sliderTextRef.current.slickNext()}
+                  onClick={() => sliderRef.current.slickNext()}
                 >
                   <AngleRightArrow height="30" />
                 </div>
-              </SliderButtons>
+              </S.Buttons>
             </Column>
-          </SlideGroup>
+          </S.SlideGroup>
           {!mobile && (
-            <CustomColumn desktop={{ size: 6 }} widescreen={{ size: 6 }}>
+            <S.Column desktop={{ size: 6 }} widescreen={{ size: 6 }}>
               <Img
                 fluid={primary.image.localFile.childImageSharp.fluid}
                 alt={primary.image.alt}
               />
-            </CustomColumn>
+            </S.Column>
           )}
         </Column>
-      </CustomColumnGroup>
-    </CustomSection>
+      </S.ColumnGroup>
+    </S.Section>
   );
 };
 
