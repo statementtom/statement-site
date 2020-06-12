@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import * as RBX from 'rbx';
+import * as RBX from "rbx";
 
 export const Content = styled(RBX.Content)`
   display: flex;
@@ -30,6 +30,9 @@ export const Content = styled(RBX.Content)`
     @media screen and (max-width: 768px) {
       font-size: 32px;
       line-height: 48px;
+    }
+    &:last-of-type {
+      margin-top: 0;
     }
     strong {
       color: #ce0527;
