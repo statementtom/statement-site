@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Content as BContent } from "rbx";
 
 export const Item = styled.div`
+  cursor: pointer;
   display: block;
   height: 80vh;
   position: relative;
