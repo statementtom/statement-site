@@ -77,9 +77,6 @@ export const pageQuery = graphql`
           ... on PrismicPageBodyTextWithImageAlternate {
             ...PrismicPageBodyTextWithImageAlternateFragment
           }
-          ... on PrismicPageBodyStats {
-            ...PrismicPageBodyStatsFragment
-          }
           ... on PrismicPageBodyTestimonialSlider {
             ...PrismicPageBodyTestimonialSliderFragment
           }

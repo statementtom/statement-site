@@ -28,7 +28,7 @@ const CaseStudyList = ({ items }) => {
     setMounted(true);
   }, []);
 
-  if (mounted) {
+  if (mounted && items) {
     return (
       <S.Container>
         <Carousel ref={sliderRef} settings={SETTINGS}>
