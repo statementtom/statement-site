@@ -49,7 +49,8 @@ export const ContactForm = () => {
         service,
         budget,
         message,
-        "g-recaptcha-response": recaptcha
+        "g-recaptcha-response": recaptcha,
+        "referrer": window.location.href,
       })
     })
       .then(() => {
