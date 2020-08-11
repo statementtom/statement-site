@@ -54,7 +54,8 @@ const PPCForm = ({ primary, items, uid }) => {
       body: encode({
         "form-name": uid,
         "g-recaptcha-response": recaptcha,
-        ...data
+        ...data,
+        "referrer": window.location.href
       })
     })
       .then(() => {

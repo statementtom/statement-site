@@ -44,9 +44,6 @@ export const pageQuery = graphql`
           ... on PrismicCareerBodyContent {
             ...PrismicCareerBodyContentFragment
           }
-          ... on PrismicCareerBodyRelatedCareers {
-            ...PrismicCareerBodyRelatedCareersFragment
-          }
         }
       }
     }
