@@ -29,12 +29,34 @@ const CustomContent = styled(Content)`
   }
 `;
 
+const CustomContentSmall = styled(Content)`
+  color: #707070;
+  font-weight: 300;
+
+  a {
+    text-decoration: none;
+    color: #707070;
+    font-weight: 300;
+    display: block;
+  }
+  p {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    margin-bottom: 0 !important;
+    strong {
+      margin-bottom: 10px !important;
+      display: block;
+    }
+  }
+`;
+
 const SocialList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   li {
     margin-right: 20px;
+    margin: 0 20px 1.5rem 0;
 
     a {
       color: #000;
@@ -50,7 +72,7 @@ const IconWrappers = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 44px;
+  margin-top: 1.5rem;
   svg {
     &:first-of-type {
       margin-right: 30px;
@@ -156,6 +178,13 @@ const Contact = ({ content, social }) => (
           );
         })}
       </SocialList>
+    )}
+    {content.content && (
+      <CustomContentSmall
+        dangerouslySetInnerHTML={{
+          __html: content.content
+        }}
+      />
     )}
     <IconWrappers>
       <ShopifyPlus fill="#000" height="24" />

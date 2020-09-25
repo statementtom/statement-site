@@ -104,6 +104,7 @@ export default () => {
                   content={{
                     ...(item.primary.email && { email: item.primary.email }),
                     ...(item.primary.number && { number: item.primary.number }),
+                    ...(item.primary.content && { content: item.primary.content.html })
                   }}
                   social={item.items}
                 />
