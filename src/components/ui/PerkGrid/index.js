@@ -9,7 +9,7 @@ import * as Animated from "./animations";
 import getPerkIcon from "../../../util/content/getPerkIcon";
 
 const PerkGrid = ({ primary, items }) => {
-  const content = generateContent({
+  let content = generateContent({
     title: primary.content_title.html
   });
   if (!items || items.length === 0) return null;
@@ -36,8 +36,8 @@ const PerkGrid = ({ primary, items }) => {
         </ColumnGroup>
         <ColumnGroup className="is-mobile is-multiline">
           {items.map((item, index) => {
-            const Icon = getPerkIcon(item.content_icon);
-            const content = generateContent({
+            const Icon = item.content_icon ? getPerkIcon(item.content_icon) : null;
+            content = generateContent({
               title: item.content_title.html,
               copy: item.content_copy.html
             });
@@ -48,9 +48,13 @@ const PerkGrid = ({ primary, items }) => {
                 desktop={{ size: 4 }}
               >
                 <Animated.Card>
-                  <S.CardIcon>
-                    <Icon height={60} />
-                  </S.CardIcon>
+                  {Icon ? (
+                    <S.CardIcon>
+                      <Icon height={60} />
+                    </S.CardIcon>
+                  ) : (
+                    ''
+                  )}
                   <S.CardContent
                     dangerouslySetInnerHTML={{ __html: content }}
                     align="center"
