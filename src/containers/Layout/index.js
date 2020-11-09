@@ -10,12 +10,7 @@ import Header from "../../components/ui/Header";
 
 const Layout = ({ children }) => (
   <>
-    <Helmet encodeSpecialCharacters>
-      <script
-        type="text/javascript"
-        src="https://cdns.canddi.com/p/d42f869864fbbba8e2b330f06c011ce0.js"
-      />
-    </Helmet>
+    <Helmet encodeSpecialCharacters />
     <Header />
     <Global
       styles={css`
